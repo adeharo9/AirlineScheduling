@@ -1,7 +1,3 @@
-//
-// Created by adeha on 03/01/2018.
-//
-
 #ifndef AIRLINESCHEDULING_DEBUG_H
 #define AIRLINESCHEDULING_DEBUG_H
 
