@@ -2,56 +2,12 @@
 #include <vector>
 #include <map>
 
+#include "utils/Constants.h"
+#include "utils/Debug.h"
 #include "structures/Aresta.h"
 #include "structures/Node.h"
 
 using namespace std;
-
-void printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
-{
-	for(int i = 0; i < n.size(); ++i)
-	{
-		switch(i)
-		{
-			case 0:
-				cout << "Real source: " << endl;
-				break;
-
-			case 1:
-				cout << "Real sink: " << endl;
-				break;
-
-			case 2:
-				cout << "Demands source: " << endl;
-				break;
-
-			case 3:
-				cout << "Demands sink: " << endl;
-				break;
-
-			default:
-				cout << endl << "Node " << i;
-
-				if (i % 2 == 0)
-				{
-					cout << " (Origen)";
-				}
-				else
-				{
-					cout << " (Destí)";
-				}
-
-				cout << ": " << endl;
-				cout << "(Ciutat: " << n[i].city << ", Hora: " << n[i].time << ", Demanda: " << n[i].demanda << ")" << endl;
-				break;
-		}
-		for (int j = 0; j < g[i].size(); ++j)
-		{
-			cout << "Aresta" << j << ": ";
-			cout << "(" << g[i][j].n << ", low: " << g[i][j].lowerBound << ", capacity: " << g[i][j].capacity << " )" << endl;
-		}
-	}
-}
 
 /*
 	afegeix arestes segibs el criteri sobre quines transicions son posibles de la versió 1
@@ -69,7 +25,7 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 				if (n[i].city == n[j].city and n[j].time - n[i].time >= 15)
 				{
 					// aresta del desti i al origen j amb pes 1
-					g[i].push_back(Aresta(j, 1));
+					g[i].emplace_back(Aresta(j, 1));
 				}
 			}
 		}
@@ -78,37 +34,37 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 
 int main()
 {
-	int o, d, h1, h2;
+	int origin, destination, departureTime, arrivalTime;
 	// estructura de dades per guardar les arestes
-	vector<vector<Aresta>> graf(4);// sources and sinks
+	vector<vector<Aresta>> graf(MIN_NODES);// sources and sinks
 	// graf [0] source without demands
 	// graf [1] sink without demands
 	// graf [2] source with demands
 	// graf [3] sink with demands
 
 	// nodes
-	vector<Node> nodes(4);
+	vector<Node> nodes(MIN_NODES);
 
 	int i = 4;
-	while (cin >> o >> d >> h1 >> h2)
+	while (cin >> origin >> destination >> departureTime >> arrivalTime)
 	{
 		// operacions descrites a la pagina 390 del llibre
 		// afegeix el node de la ciutat d'origen
-		nodes.push_back(Node(o, h1));
+		nodes.emplace_back(Node(origin, departureTime));
 		// afegeix el node de la ciutat de destí
-		nodes.push_back(Node(d, h2));
+		nodes.emplace_back(Node(destination, arrivalTime));
 		// afegeix l'aresta entre vols
-		graf.push_back(vector<Aresta>(1, Aresta(i + 1, 1)));
+		graf.emplace_back(vector<Aresta>(1, Aresta(i + 1, 1)));
 		graf[i][0].lowerBound = 1;
 		// afegeix l'aresta del source al origen
-		graf[2].push_back(Aresta(i, 1));
+		graf[2].emplace_back(Aresta(i, 1));
 		// afegeix l'aresta del desti al sink
-		graf.push_back(vector<Aresta>(1, Aresta(3, 1)));
+		graf.emplace_back(vector<Aresta>(1, Aresta(3, 1)));
 		i += 2;
 	}
 
 	// TODO Falta la aresta de s a t amb capacitat k
 
 	version1(nodes, graf);
-	printState(nodes, graf);
+	Debug::printState(nodes, graf);
 }

@@ -9,13 +9,13 @@ public:
 
 	int city;
 	int time;
-	int demanda;
+	int demand;
 
 public:
 	/* CONSTRUCTORS */
 
 	Node() = default;
-	Node(int city, int time, int demanda = 0);
+	Node(int city, int time, int demand = 0);
 
 	/* DESTRUCTORS */
 
