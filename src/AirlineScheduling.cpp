@@ -23,7 +23,7 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 		{
 			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
 			{
-				if (n[i].city == n[j].city and n[j].time - n[i].time >= 15)
+				if (n[i].city == n[j].city and n[j].time - n[i].time >= MIN_TRANSITION_TIME)
 				{
 					// aresta del desti i al origen j amb pes 1
 					g[i].emplace_back(Aresta(j, 1));
