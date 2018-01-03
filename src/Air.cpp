@@ -2,45 +2,10 @@
 #include <vector>
 #include <map>
 
+#include "data structures/Aresta.h"
+#include "data structures/Node.h"
+
 using namespace std;
-
-struct Aresta
-{
-	int n;
-	int lw; //lower bound
-	int cap;//capacity
-
-	Aresta() = default
-	{
-
-	}
-
-	Aresta(int to, int c)
-	{
-		n = to;
-		cap = c;
-		lw = 0;
-	}
-};
-
-struct Node
-{
-	int ciutat;
-	int hora;
-	int demanda;
-
-	Node() = default
-	{
-
-	}
-
-	Node(int c, int h)
-	{
-		ciutat = c;
-		hora = h;
-		demanda = 0;
-	}
-};
 
 void printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 {
