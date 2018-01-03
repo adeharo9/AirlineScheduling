@@ -3,17 +3,24 @@
 #include <map>
 using namespace std;
 
-struct aresta{
+struct aresta
+{
   int n;
   int lw; //lower bound
   int cap;//capacity
-  aresta(int to,int c){
+
+  aresta(int to,int c)
+  {
     n=to;
     cap=c;
     lw=0;
   }
-  aresta(){}
+  aresta()
+  {
+
+  }
 };
+
 struct node{
   int ciutat;
   int hora;
@@ -25,7 +32,8 @@ struct node{
   }
   node(){}
 };
-void print_estat (const vector<node> & n,const vector<vector<aresta> > &g){
+void print_estat(const vector<node> & n,const vector<vector<aresta> > &g)
+{
   for (int i=0;i<n.size();i++){
     switch(i){
       case 0:
