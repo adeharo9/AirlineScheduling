@@ -4,6 +4,7 @@
 
 #include "utils/Constants.h"
 #include "utils/Debug.h"
+#include "utils/Utils.h"
 #include "structures/Aresta.h"
 #include "structures/Node.h"
 
@@ -16,9 +17,9 @@ using namespace std;
 */
 void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 {
-	for (int i = 5; i < n.size(); i += 2)	// i es desti
+	for (uint i = 5; i < n.size(); i += 2)	// i es desti
 	{
-		for (int j = 4; j < n.size(); j += 2)	// j es origen
+		for (uint j = 4; j < n.size(); j += 2)	// j es origen
 		{
 			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
 			{
@@ -34,32 +35,34 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 
 int main()
 {
-	int origin, destination, departureTime, arrivalTime;
+	uint origin;
+	uint destination;
+	uint departureTime;
+	uint arrivalTime;
+
 	// estructura de dades per guardar les arestes
-	vector<vector<Aresta>> graf(MIN_NODES);// sources and sinks
 	// graf [0] source without demands
 	// graf [1] sink without demands
 	// graf [2] source with demands
 	// graf [3] sink with demands
+	vector<vector<Aresta>> graf(MIN_NODES);// sources and sinks
 
 	// nodes
 	vector<Node> nodes(MIN_NODES);
 
-	int i = 4;
-	while (cin >> origin >> destination >> departureTime >> arrivalTime)
+	uint i = 4;
+
+	while (cin >> origin >> destination >> departureTime >> arrivalTime)	// operacions descrites a la pagina 390 del llibre
 	{
-		// operacions descrites a la pagina 390 del llibre
-		// afegeix el node de la ciutat d'origen
-		nodes.emplace_back(Node(origin, departureTime));
-		// afegeix el node de la ciutat de destí
-		nodes.emplace_back(Node(destination, arrivalTime));
-		// afegeix l'aresta entre vols
-		graf.emplace_back(vector<Aresta>(1, Aresta(i + 1, 1)));
+		nodes.emplace_back(Node(origin, departureTime));					// Afegeix el node de la ciutat d'origen
+		nodes.emplace_back(Node(destination, arrivalTime));					// Afegeix el node de la ciutat de destí
+		graf.emplace_back(vector<Aresta>(1, Aresta(i + 1, 1)));				// Afegeix l'aresta entre vols
+
 		graf[i][0].lowerBound = 1;
-		// afegeix l'aresta del source al origen
-		graf[2].emplace_back(Aresta(i, 1));
-		// afegeix l'aresta del desti al sink
-		graf.emplace_back(vector<Aresta>(1, Aresta(3, 1)));
+
+		graf[2].emplace_back(Aresta(i, 1));									// Afegeix l'aresta del source al origen
+		graf.emplace_back(vector<Aresta>(1, Aresta(3, 1)));					// Afegeix l'aresta del desti al sink
+
 		i += 2;
 	}
 
