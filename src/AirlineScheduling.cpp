@@ -58,7 +58,7 @@ int main()
 		nodes.emplace_back(Vertex(destination, arrivalTime));					// Afegeix el node de la ciutat de destí
 		graf.emplace_back(vector<Edge>(1, Edge(i + 1, 1)));				// Afegeix l'aresta entre vols
 
-		graf[i][0].lowerBound = 1;
+		graf[i][0].setLowerBound(1);
 
 		graf[2].emplace_back(Edge(i, 1));									// Afegeix l'aresta del source al origen
 		graf.emplace_back(vector<Edge>(1, Edge(3, 1)));					// Afegeix l'aresta del desti al sink

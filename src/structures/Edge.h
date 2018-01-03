@@ -4,7 +4,7 @@
 
 class Edge
 {
-public:
+private:
 	/* ATTRIBUTES */
 
 	int n;
@@ -21,6 +21,10 @@ public:
 	/* DESTRUCTORS */
 
 	~Edge() = default;
+
+	/* SET METHODS */
+
+	void setLowerBound(int lowerBound);
 
 	/* GET METHODS */
 
