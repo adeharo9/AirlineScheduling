@@ -8,11 +8,11 @@ public:
 	/* ATTRIBUTES */
 
 	int n;
-	int lowerBound;	//lower bound
-	int capacity;	//capacity
+	int lowerBound;	// Lower bound
+	int capacity;	// Capacity
 
 public:
-	/* CONSTRUCTORS*/
+	/* CONSTRUCTORS */
 
 	Aresta() = default;
 	Aresta(int to, int capacity, int lowerBound = 0);

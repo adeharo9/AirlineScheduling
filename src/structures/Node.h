@@ -12,7 +12,7 @@ public:
 	int demanda;
 
 public:
-	/* CONSTRUCTORS*/
+	/* CONSTRUCTORS */
 
 	Node() = default;
 	Node(int city, int time, int demanda = 0);
