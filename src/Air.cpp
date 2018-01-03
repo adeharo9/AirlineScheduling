@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+
 using namespace std;
 
 struct Aresta
@@ -16,9 +17,9 @@ struct Aresta
 
 	Aresta(int to, int c)
 	{
-		n=to;
-		cap=c;
-		lw=0;
+		n = to;
+		cap = c;
+		lw = 0;
 	}
 };
 
@@ -35,15 +36,15 @@ struct Node
 
 	Node(int c, int h)
 	{
-		ciutat=c;
-		hora=h;
-		demanda=0;
+		ciutat = c;
+		hora = h;
+		demanda = 0;
 	}
 };
 
-void printState(const vector<Node> &n, const vector<vector<Aresta>> &g)
+void printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 {
-	for(int i=0; i<n.size(); ++i)
+	for(int i = 0; i < n.size(); ++i)
 	{
 		switch(i)
 		{
@@ -66,7 +67,7 @@ void printState(const vector<Node> &n, const vector<vector<Aresta>> &g)
 			default:
 				cout << endl << "Node " << i;
 
-				if (i%2==0)
+				if (i % 2 == 0)
 				{
 					cout << " (Origen)";
 				}
@@ -75,13 +76,13 @@ void printState(const vector<Node> &n, const vector<vector<Aresta>> &g)
 					cout << " (Destí)";
 				}
 
-				cout << " :" << endl;
-				cout << "(Ciutat: " << n[i].ciutat << ",Hora: " << n[i].hora << ",Demanda: " << n[i].demanda << ")" << endl;
+				cout << ": " << endl;
+				cout << "(Ciutat: " << n[i].ciutat << ", Hora: " << n[i].hora << ", Demanda: " << n[i].demanda << ")" << endl;
 				break;
 		}
-		for (int j=0; j<g[i].size(); j++)
+		for (int j = 0; j < g[i].size(); ++j)
 		{
-			cout << "Aresta" << j << ":";
+			cout << "Aresta" << j << ": ";
 			cout << "(" << g[i][j].n << ", low: " << g[i][j].lw << ", cap: " << g[i][j].cap << " )" << endl;
 		}
 	}
@@ -92,7 +93,7 @@ void printState(const vector<Node> &n, const vector<vector<Aresta>> &g)
 	per tot node destí comprobem per tot node origen si es possible fer transició
 	cost n * n on n son els vols
 */
-void version1 (const vector<Node> & n, vector<vector<Aresta> > &g)
+void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 {
 	for (int i = 5; i < n.size(); i += 2)	//i es desti
 	{
