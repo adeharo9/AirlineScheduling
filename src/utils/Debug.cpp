@@ -35,13 +35,13 @@ void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
 				}
 
 				cout << ": " << endl;
-				cout << "(Ciutat: " << n[i].city << ", Hora: " << n[i].time << ", Demanda: " << n[i].demand << ")" << endl;
+				cout << "(Ciutat: " << n[i].getCity() << ", Hora: " << n[i].getTime() << ", Demanda: " << n[i].getDemand() << ")" << endl;
 				break;
 		}
 		for (int j = 0; j < g[i].size(); ++j)
 		{
 			cout << "Edge" << j << ": ";
-			cout << "(" << g[i][j].n << ", low: " << g[i][j].lowerBound << ", capacity: " << g[i][j].capacity << " )" << endl;
+			cout << "(" << g[i][j].getN() << ", low: " << g[i][j].getLowerBound() << ", capacity: " << g[i][j].getCapacity() << " )" << endl;
 		}
 	}
 }

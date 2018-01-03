@@ -1,0 +1,11 @@
+#ifndef AIRLINESCHEDULING_GRAPH_H
+#define AIRLINESCHEDULING_GRAPH_H
+
+
+class Graph
+{
+
+};
+
+
+#endif //AIRLINESCHEDULING_GRAPH_H

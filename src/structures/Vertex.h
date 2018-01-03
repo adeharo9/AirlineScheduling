@@ -4,7 +4,7 @@
 
 class Vertex
 {
-public:
+private:
 	/* ATTRIBUTES */
 
 	int city;
@@ -15,11 +15,20 @@ public:
 	/* CONSTRUCTORS */
 
 	Vertex() = default;
+
 	Vertex(int city, int time, int demand = 0);
 
 	/* DESTRUCTORS */
 
 	~Vertex() = default;
+
+	/* GET METHODS */
+
+	int getCity() const;
+
+	int getTime() const;
+
+	int getDemand() const;
 };
 
 

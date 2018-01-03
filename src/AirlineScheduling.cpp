@@ -23,7 +23,7 @@ void version1 (const vector<Vertex>& n, vector<vector<Edge>>& g)
 		{
 			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
 			{
-				if (n[i].city == n[j].city and n[j].time - n[i].time >= MIN_TRANSITION_TIME)
+				if (n[i].getCity() == n[j].getCity() and n[j].getTime() - n[i].getTime() >= MIN_TRANSITION_TIME)
 				{
 					// aresta del desti i al origen j amb pes 1
 					g[i].emplace_back(Edge(j, 1));

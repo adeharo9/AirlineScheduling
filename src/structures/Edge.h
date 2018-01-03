@@ -15,11 +15,20 @@ public:
 	/* CONSTRUCTORS */
 
 	Edge() = default;
+
 	Edge(int to, int capacity, int lowerBound = 0);
 
 	/* DESTRUCTORS */
 
 	~Edge() = default;
+
+	/* GET METHODS */
+
+	int getN() const;
+
+	int getLowerBound() const;
+
+	int getCapacity() const;
 };
 
 

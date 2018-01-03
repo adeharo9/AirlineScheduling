@@ -6,3 +6,20 @@ Edge::Edge(int to, int capacity, int lowerBound) : n(to), capacity(capacity), lo
 {
 
 }
+
+/* GET METHODS */
+
+int Edge::getN() const
+{
+	return this -> n;
+}
+
+int Edge::getLowerBound() const
+{
+	return this -> lowerBound;
+}
+
+int Edge::getCapacity() const
+{
+	return this -> capacity;
+}
