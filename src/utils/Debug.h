@@ -16,7 +16,7 @@ using namespace std;
 class Debug
 {
 public:
-	static void printState(const vector<Node>& n, const vector<vector<Aresta>>& g) const;
+	static void printState(const vector<Node>& n, const vector<vector<Aresta>>& g);
 };
 
 

@@ -1,6 +1,6 @@
 #include "Debug.h"
 
-void Debug::printState(const vector<Node>& n, const vector<vector<Aresta>>& g) const
+void Debug::printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 {
 	for(int i = 0; i < n.size(); ++i)
 	{
