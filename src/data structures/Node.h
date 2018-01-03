@@ -7,14 +7,19 @@ class Node
 public:
 	/* ATTRIBUTES */
 
-	int ciutat;
-	int hora;
+	int city;
+	int time;
 	int demanda;
 
+public:
 	/* CONSTRUCTORS*/
 
-	Node();
-	Node(int c, int h);
+	Node() = default;
+	Node(int city, int time, int demanda = 0);
+
+	/* DESTRUCTORS */
+
+	~Node() = default;
 };
 
 

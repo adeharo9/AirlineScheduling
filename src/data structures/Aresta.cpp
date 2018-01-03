@@ -1,11 +1,8 @@
 #include "Aresta.h"
 
-Aresta::Aresta() = default
-{
+/* CONSTRUCTORS*/
 
-}
-
-Aresta::Aresta(int to, int c) : n(to), cap(c), lw(0)
+Aresta::Aresta(int to, int capacity, int lowerBound) : n(to), capacity(capacity), lowerBound(lowerBound)
 {
 
 }

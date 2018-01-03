@@ -1,13 +1,8 @@
 #include "Node.h"
 
-Node::Node() = default
+/* CONSTRUCTORS*/
+
+Node::Node(int city, int time, int demanda) : city(city), time(time), demanda(demanda)
 {
 
-}
-
-Node::Node(int c, int h)
-{
-	ciutat = c;
-	hora = h;
-	demanda = 0;
 }

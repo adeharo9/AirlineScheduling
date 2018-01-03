@@ -42,13 +42,13 @@ void printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 				}
 
 				cout << ": " << endl;
-				cout << "(Ciutat: " << n[i].ciutat << ", Hora: " << n[i].hora << ", Demanda: " << n[i].demanda << ")" << endl;
+				cout << "(Ciutat: " << n[i].city << ", Hora: " << n[i].time << ", Demanda: " << n[i].demanda << ")" << endl;
 				break;
 		}
 		for (int j = 0; j < g[i].size(); ++j)
 		{
 			cout << "Aresta" << j << ": ";
-			cout << "(" << g[i][j].n << ", low: " << g[i][j].lw << ", cap: " << g[i][j].cap << " )" << endl;
+			cout << "(" << g[i][j].n << ", low: " << g[i][j].lowerBound << ", capacity: " << g[i][j].capacity << " )" << endl;
 		}
 	}
 }
@@ -66,7 +66,7 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 		{
 			if (j != i - 1)	//per evitar fer calculs sobre el mateix vol
 			{
-				if (n[i].ciutat == n[j].ciutat and n[j].hora - n[i].hora >= 15)
+				if (n[i].city == n[j].city and n[j].time - n[i].time >= 15)
 				{
 					//aresta del desti i al origen j amb pes 1
 					g[i].push_back(Aresta(j, 1));
@@ -99,7 +99,7 @@ int main()
 		nodes.push_back(Node(d, h2));
 		//afegeix l'aresta entre vols
 		graf.push_back(vector<Aresta>(1, Aresta(i + 1, 1)));
-		graf[i][0].lw = 1;
+		graf[i][0].lowerBound = 1;
 		//afegeix l'aresta del source al origen
 		graf[2].push_back(Aresta(i, 1));
 		//afegeix l'aresta del desti al sink
