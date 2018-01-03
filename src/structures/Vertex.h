@@ -2,7 +2,7 @@
 #define AIRLINESCHEDULING_NODE_H
 
 
-class Node
+class Vertex
 {
 public:
 	/* ATTRIBUTES */
@@ -14,12 +14,12 @@ public:
 public:
 	/* CONSTRUCTORS */
 
-	Node() = default;
-	Node(int city, int time, int demand = 0);
+	Vertex() = default;
+	Vertex(int city, int time, int demand = 0);
 
 	/* DESTRUCTORS */
 
-	~Node() = default;
+	~Vertex() = default;
 };
 
 

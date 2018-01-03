@@ -42,15 +42,15 @@ CPL_FILES = $(CPL_FILES_AUX:.[EXT]=)
 
 # FILE STRUCTURE
 HEADERS = \
-	[FILEPATH]/structures/Aresta.[EXT] \
-	[FILEPATH]/structures/Node.[EXT] \
+	[FILEPATH]/structures/Edge.[EXT] \
+	[FILEPATH]/structures/Vertex.[EXT] \
 	[FILEPATH]/utils/Constants.[EXT] \
 	[FILEPATH]/utils/Debug.[EXT] \
 	[FILEPATH]/utils/Utils.[EXT]
 
 SOURCES = \
-	[FILEPATH]/structures/Aresta.[EXT] \
-	[FILEPATH]/structures/Node.[EXT] \
+	[FILEPATH]/structures/Edge.[EXT] \
+	[FILEPATH]/structures/Vertex.[EXT] \
 	[FILEPATH]/utils/Debug.[EXT] \
 	[FILEPATH]/AirlineScheduling.[EXT]
 

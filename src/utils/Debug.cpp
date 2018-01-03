@@ -1,6 +1,6 @@
 #include "Debug.h"
 
-void Debug::printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
+void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
 {
 	for(int i = 0; i < n.size(); ++i)
 	{
@@ -23,7 +23,7 @@ void Debug::printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 				break;
 
 			default:
-				cout << endl << "Node " << i;
+				cout << endl << "Vertex " << i;
 
 				if (i % 2 == 0)
 				{
@@ -40,7 +40,7 @@ void Debug::printState(const vector<Node>& n, const vector<vector<Aresta>>& g)
 		}
 		for (int j = 0; j < g[i].size(); ++j)
 		{
-			cout << "Aresta" << j << ": ";
+			cout << "Edge" << j << ": ";
 			cout << "(" << g[i][j].n << ", low: " << g[i][j].lowerBound << ", capacity: " << g[i][j].capacity << " )" << endl;
 		}
 	}

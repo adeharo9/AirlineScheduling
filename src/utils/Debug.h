@@ -4,15 +4,15 @@
 #include <iostream>
 #include <vector>
 
-#include "../structures/Aresta.h"
-#include "../structures/Node.h"
+#include "../structures/Edge.h"
+#include "../structures/Vertex.h"
 
 using namespace std;
 
 class Debug
 {
 public:
-	static void printState(const vector<Node>& n, const vector<vector<Aresta>>& g);
+	static void printState(const vector<Vertex>& n, const vector<vector<Edge>>& g);
 };
 
 

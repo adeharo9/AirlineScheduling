@@ -2,7 +2,7 @@
 #define AIRLINESCHEDULING_ARESTA_H
 
 
-class Aresta
+class Edge
 {
 public:
 	/* ATTRIBUTES */
@@ -14,12 +14,12 @@ public:
 public:
 	/* CONSTRUCTORS */
 
-	Aresta() = default;
-	Aresta(int to, int capacity, int lowerBound = 0);
+	Edge() = default;
+	Edge(int to, int capacity, int lowerBound = 0);
 
 	/* DESTRUCTORS */
 
-	~Aresta() = default;
+	~Edge() = default;
 };
 
 
