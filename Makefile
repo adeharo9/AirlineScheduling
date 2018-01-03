@@ -45,7 +45,8 @@ HEADERS = \
 	[FILEPATH]/structures/Aresta.[EXT] \
 	[FILEPATH]/structures/Node.[EXT] \
 	[FILEPATH]/utils/Constants.[EXT] \
-	[FILEPATH]/utils/Debug.[EXT]
+	[FILEPATH]/utils/Debug.[EXT] \
+	[FILEPATH]/utils/Utils.[EXT]
 
 SOURCES = \
 	[FILEPATH]/structures/Aresta.[EXT] \
