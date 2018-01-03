@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <map>
 
 #include "utils/Constants.h"
 #include "utils/Debug.h"
@@ -52,16 +51,20 @@ int main()
 
 	uint i = 4;
 
-	while (cin >> origin >> destination >> departureTime >> arrivalTime)	// operacions descrites a la pagina 390 del llibre
+	while (cin >> origin)	// operacions descrites a la pagina 390 del llibre
 	{
-		nodes.emplace_back(Vertex(origin, departureTime));					// Afegeix el node de la ciutat d'origen
-		nodes.emplace_back(Vertex(destination, arrivalTime));					// Afegeix el node de la ciutat de destí
-		graf.emplace_back(vector<Edge>(1, Edge(i + 1, 1)));				// Afegeix l'aresta entre vols
+		cin >> destination;
+		cin >> departureTime;
+		cin >> arrivalTime;
+
+		nodes.emplace_back(Vertex(origin, departureTime));		// Afegeix el node de la ciutat d'origen
+		nodes.emplace_back(Vertex(destination, arrivalTime));	// Afegeix el node de la ciutat de destí
+		graf.emplace_back(vector<Edge>(1, Edge(i + 1, 1)));		// Afegeix l'aresta entre vols
 
 		graf[i][0].setLowerBound(1);
 
-		graf[2].emplace_back(Edge(i, 1));									// Afegeix l'aresta del source al origen
-		graf.emplace_back(vector<Edge>(1, Edge(3, 1)));					// Afegeix l'aresta del desti al sink
+		graf[2].emplace_back(Edge(i, 1));						// Afegeix l'aresta del source al origen
+		graf.emplace_back(vector<Edge>(1, Edge(3, 1)));			// Afegeix l'aresta del desti al sink
 
 		i += 2;
 	}
