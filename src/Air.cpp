@@ -99,7 +99,7 @@ void version1 (const vector<Node>& n, vector<vector<Aresta>>& g)
 	{
 		for (int j = 4; j < n.size(); j += 2)	//j es origen
 		{
-			if (i != j - 1)	//per evitar fer calculs sobre el mateix vol
+			if (j != i - 1)	//per evitar fer calculs sobre el mateix vol
 			{
 				if (n[i].ciutat == n[j].ciutat and n[j].hora - n[i].hora >= 15)
 				{
