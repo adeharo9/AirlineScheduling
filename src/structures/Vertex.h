@@ -1,5 +1,5 @@
-#ifndef AIRLINESCHEDULING_NODE_H
-#define AIRLINESCHEDULING_NODE_H
+#ifndef AIRLINESCHEDULING_VERTEX_H
+#define AIRLINESCHEDULING_VERTEX_H
 
 #include <stdexcept>
 
@@ -10,6 +10,7 @@ using namespace std;
 class Vertex
 {
 private:
+
 	/* ATTRIBUTES */
 
 	uint city;
@@ -17,6 +18,7 @@ private:
 	int demand;
 
 public:
+
 	/* CONSTRUCTORS */
 
 	Vertex() = default;
@@ -45,4 +47,4 @@ public:
 };
 
 
-#endif //AIRLINESCHEDULING_NODE_H
+#endif // AIRLINESCHEDULING_VERTEX_H

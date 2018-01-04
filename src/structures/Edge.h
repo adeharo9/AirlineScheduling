@@ -1,5 +1,5 @@
-#ifndef AIRLINESCHEDULING_ARESTA_H
-#define AIRLINESCHEDULING_ARESTA_H
+#ifndef AIRLINESCHEDULING_EDGE_H
+#define AIRLINESCHEDULING_EDGE_H
 
 #include <stdexcept>
 
@@ -10,13 +10,15 @@ using namespace std;
 class Edge
 {
 private:
+
 	/* ATTRIBUTES */
 
 	uint flow;
-	uint lowerBound;	// Lower bound
-	uint capacity;	// Capacity
+	uint lowerBound;
+	uint capacity;
 
 public:
+
 	/* CONSTRUCTORS */
 
 	Edge() = default;
@@ -43,4 +45,4 @@ public:
 };
 
 
-#endif //AIRLINESCHEDULING_ARESTA_H
+#endif // AIRLINESCHEDULING_EDGE_H
