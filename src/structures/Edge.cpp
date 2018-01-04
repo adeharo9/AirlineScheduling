@@ -2,9 +2,9 @@
 
 /* CONSTRUCTORS */
 
-Edge::Edge(int to, int capacity, int lowerBound) : n((uint) to), capacity((uint) capacity), lowerBound((uint) lowerBound)
+Edge::Edge(int flow, int capacity, int lowerBound) : flow((uint) flow), capacity((uint) capacity), lowerBound((uint) lowerBound)
 {
-	if(to < 0) throw invalid_argument("to");
+	if(flow < 0) throw invalid_argument("to");
 	if(capacity < 0) throw invalid_argument("capacity");
 	if(lowerBound < 0) throw invalid_argument("lowerBound");
 }
@@ -29,7 +29,7 @@ void Edge::setCapacity(int capacity)
 
 uint Edge::getN() const
 {
-	return this -> n;
+	return this -> flow;
 }
 
 uint Edge::getLowerBound() const

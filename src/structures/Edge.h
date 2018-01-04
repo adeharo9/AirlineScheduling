@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-#include "../utils/Utils.h"
+typedef unsigned int uint;
 
 using namespace std;
 
@@ -12,7 +12,7 @@ class Edge
 private:
 	/* ATTRIBUTES */
 
-	uint n;
+	uint flow;
 	uint lowerBound;	// Lower bound
 	uint capacity;	// Capacity
 
@@ -21,7 +21,7 @@ public:
 
 	Edge() = default;
 
-	Edge(int to, int capacity, int lowerBound = 0);
+	Edge(int flow, int capacity, int lowerBound = 0);
 
 	/* DESTRUCTORS */
 
