@@ -43,6 +43,7 @@ CPL_FILES = $(CPL_FILES_AUX:.[EXT]=)
 # FILE STRUCTURE
 HEADERS = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
+    [FILEPATH]/algorithms/FordFulkerson.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
@@ -53,6 +54,7 @@ HEADERS = \
 
 SOURCES = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
+    [FILEPATH]/algorithms/FordFulkerson.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
