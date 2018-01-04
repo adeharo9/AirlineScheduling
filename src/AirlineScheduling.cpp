@@ -8,6 +8,7 @@
 #include "utils/Utils.h"
 #include "structures/Edge.h"
 #include "structures/Vertex.h"
+#include "algorithms/FordFulkersonDFS.h"
 
 using namespace std;
 
@@ -92,17 +93,32 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 	cout << "Max Flow: " << endl;
 
-	EdmondsKarp algorithm = EdmondsKarp();
+	FordFulkerson* edmondsKarp = new EdmondsKarp();
 
 	Chrono chrono;
 
 	chrono.start(0);
 
-	cout << endl << algorithm.edmondsKarp(gr, 0, 1, size) << endl;
+	cout << endl << edmondsKarp -> algorithm(gr, 0, 1, size) << endl;
 
 	chrono.stop(0);
 
 	cout << "Chrono duration: " << chrono.duration(0) << endl;
+
+	delete edmondsKarp;
+
+
+	FordFulkerson* fordFulkersonDFS = new FordFulkersonDFS();
+
+	chrono.start(1);
+
+	cout << endl << fordFulkersonDFS -> algorithm(gr, 0, 1, size) << endl;
+
+	chrono.stop(1);
+
+	cout << "Chrono duration: " << chrono.duration(1) << endl;
+
+	delete fordFulkersonDFS;
 }
 
 int main ()
