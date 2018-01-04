@@ -7,20 +7,25 @@
 #include <queue>
 #include <vector>
 
-typedef unsigned int uint;
+#include "FordFulkerson.h"
 
 using namespace std;
 
+typedef unsigned int uint;
+
 // Traces back and prints the solution
+class EdmondsKarp : public FordFulkerson
+{
+public:
 
-void print_sol(const vector<vector<int>> & g,const vector<vector<int>> &ini);
+	/* ALIASES OF BASE CLASS METHODS */
 
-/* Returns true if there is a path from source 's' to sink 't' in
-  residual graph. Also fills parent[] to store the path */
-bool bfs(const vector<vector<int>> &rGraph , uint s, uint t, vector<int> &parent, uint V);
+	int edmondsKarp(vector<vector<int>> &residualGraph, uint s, uint t, uint V);
 
-// Returns the maximum flow from s to t in the given graph
-int edmondsKarp(vector<vector<int>> &rGraph, uint s, uint t, uint V);
+	/* GRAPH TRAVELING METHODS */
 
+	bool travelGraph(const vector<vector<int>> &residualGraph, uint s, uint t, vector<uint> &parent, uint V) override;
+
+};
 
 #endif //AIRLINESCHEDULING_EDMONDSKARP_H
