@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "algorithms/EdmondsKarp.h"
+#include "utils/Chrono.h"
 #include "utils/Constants.h"
 #include "utils/Debug.h"
 #include "utils/Utils.h"
@@ -90,7 +91,16 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 	}
 
 	cout << "Max Flow: " << endl;
+
+	Chrono chrono;
+
+	chrono.start(0);
+
 	cout << endl << EdmondsKarp(gr, 0, 1,size) << endl;
+
+	chrono.stop(0);
+
+	cout << "Chrono duration: " << chrono.duration(0) << endl;
 }
 
 int main ()
@@ -128,8 +138,6 @@ int main ()
 
 		i += 2;
 	}
-
-
 
 	int k = 2;
 
