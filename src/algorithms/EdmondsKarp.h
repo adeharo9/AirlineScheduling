@@ -20,7 +20,7 @@ void print_sol(const vector<vector<int>> & g,const vector<vector<int>> &ini);
 bool bfs(const vector<vector<int>> &rGraph , uint s, uint t, vector<int> &parent, uint V);
 
 // Returns the maximum flow from s to t in the given graph
-int EdmondsKarp(vector<vector<int>> &rGraph, uint s, uint t, uint V);
+int edmondsKarp(vector<vector<int>> &rGraph, uint s, uint t, uint V);
 
 
 #endif //AIRLINESCHEDULING_EDMONDSKARP_H

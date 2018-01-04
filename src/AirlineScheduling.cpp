@@ -78,7 +78,7 @@ void deleteDemand(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 {
-	int size=n.size();
+	uint size = n.size();
 
 	vector<vector<int>> gr (size,vector<int>(size,0));
 
@@ -96,7 +96,7 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 	chrono.start(0);
 
-	cout << endl << EdmondsKarp(gr, 0, 1,size) << endl;
+	cout << endl << edmondsKarp(gr, 0, 1, size) << endl;
 
 	chrono.stop(0);
 

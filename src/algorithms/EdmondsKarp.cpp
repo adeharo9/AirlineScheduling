@@ -48,9 +48,9 @@ bool bfs(const vector<vector<int>> &residualGraph, uint s, uint t, vector<int> &
 		{
 			if (not visited[neighbour] and residualGraph[current][neighbour] > 0)
 			{
+				visited[neighbour] = true;
 				visiting.push(neighbour);
 				parent[neighbour] = current;
-				visited[neighbour] = true;
 			}
 		}
 	}
@@ -59,7 +59,7 @@ bool bfs(const vector<vector<int>> &residualGraph, uint s, uint t, vector<int> &
 }
 
 // Returns the maximum flow from s to t in the given graph
-int EdmondsKarp(vector<vector<int>> &graph, uint s, uint t, uint V)
+int edmondsKarp(vector<vector<int>> &graph, uint s, uint t, uint V)
 {
 	int u, v;
 
