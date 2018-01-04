@@ -1,6 +1,7 @@
 #ifndef AIRLINESCHEDULING_VERTEX_H
 #define AIRLINESCHEDULING_VERTEX_H
 
+
 #include <stdexcept>
 
 typedef unsigned int uint;

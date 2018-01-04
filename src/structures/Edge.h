@@ -1,6 +1,7 @@
 #ifndef AIRLINESCHEDULING_EDGE_H
 #define AIRLINESCHEDULING_EDGE_H
 
+
 #include <stdexcept>
 
 typedef unsigned int uint;
