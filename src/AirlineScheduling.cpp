@@ -92,11 +92,13 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 	cout << "Max Flow: " << endl;
 
+	EdmondsKarp algorithm = EdmondsKarp();
+
 	Chrono chrono;
 
 	chrono.start(0);
 
-	cout << endl << edmondsKarp(gr, 0, 1, size) << endl;
+	cout << endl << algorithm.edmondsKarp(gr, 0, 1, size) << endl;
 
 	chrono.stop(0);
 
@@ -150,6 +152,6 @@ int main ()
 	deleteDemand(nodes, graf);		// Eliminar les demandes
 
 
-	Debug::printState(nodes, graf);
 	transformMax(nodes, graf);
+	Debug::printState(nodes, graf);
 }
