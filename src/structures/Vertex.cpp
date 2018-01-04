@@ -2,21 +2,41 @@
 
 /* CONSTRUCTORS */
 
-Vertex::Vertex(int city, int time, int demand) : city(city), time(time), demand(demand)
+Vertex::Vertex(int city, int time, int demand) : city((uint) city), time((uint) time), demand(demand)
 {
 	if(city < 0) throw invalid_argument("city");
 	if(time < 0) throw invalid_argument("time");
-	if(demand < 0) throw invalid_argument("demand");
+}
+
+/* SET METHODS */
+
+void Vertex::setDemand(int demand)
+{
+	this -> demand = demand;
+}
+
+void Vertex::incrementDemand(int increment)
+{
+	if(increment < 0) throw invalid_argument("increment");
+
+	this -> demand += increment;
+}
+
+void Vertex::decrementDemand(int decrement)
+{
+	if(decrement < 0) throw invalid_argument("decrement");
+
+	this -> demand -= decrement;
 }
 
 /* GET METHODS */
 
-int Vertex::getCity() const
+uint Vertex::getCity() const
 {
 	return this -> city;
 }
 
-int Vertex::getTime() const
+uint Vertex::getTime() const
 {
 	return this -> time;
 }

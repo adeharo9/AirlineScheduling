@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+#include "../utils/Utils.h"
+
 using namespace std;
 
 class Edge
@@ -10,9 +12,9 @@ class Edge
 private:
 	/* ATTRIBUTES */
 
-	int n;
-	int lowerBound;	// Lower bound
-	int capacity;	// Capacity
+	uint n;
+	uint lowerBound;	// Lower bound
+	uint capacity;	// Capacity
 
 public:
 	/* CONSTRUCTORS */
@@ -29,13 +31,15 @@ public:
 
 	void setLowerBound(int lowerBound);
 
+	void setCapacity(int capacity);
+
 	/* GET METHODS */
 
-	int getN() const;
+	uint getN() const;
 
-	int getLowerBound() const;
+	uint getLowerBound() const;
 
-	int getCapacity() const;
+	uint getCapacity() const;
 };
 
 

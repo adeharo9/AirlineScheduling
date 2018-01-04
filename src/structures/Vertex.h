@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+#include "../utils/Utils.h"
+
 using namespace std;
 
 class Vertex
@@ -10,8 +12,8 @@ class Vertex
 private:
 	/* ATTRIBUTES */
 
-	int city;
-	int time;
+	uint city;
+	uint time;
 	int demand;
 
 public:
@@ -25,11 +27,19 @@ public:
 
 	~Vertex() = default;
 
+	/* SET METHODS */
+
+	void setDemand(int demand);
+
+	void incrementDemand(int increment = 1);
+
+	void decrementDemand(int decrement = 1);
+
 	/* GET METHODS */
 
-	int getCity() const;
+	uint getCity() const;
 
-	int getTime() const;
+	uint getTime() const;
 
 	int getDemand() const;
 };
