@@ -1,6 +1,9 @@
 #ifndef AIRLINESCHEDULING_NODE_H
 #define AIRLINESCHEDULING_NODE_H
 
+#include <stdexcept>
+
+using namespace std;
 
 class Vertex
 {

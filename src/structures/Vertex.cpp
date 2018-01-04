@@ -4,7 +4,9 @@
 
 Vertex::Vertex(int city, int time, int demand) : city(city), time(time), demand(demand)
 {
-
+	if(city < 0) throw invalid_argument("city");
+	if(time < 0) throw invalid_argument("time");
+	if(demand < 0) throw invalid_argument("demand");
 }
 
 /* GET METHODS */

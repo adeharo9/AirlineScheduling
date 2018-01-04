@@ -44,10 +44,8 @@ int main()
 	// graf [1] sink without demands
 	// graf [2] source with demands
 	// graf [3] sink with demands
-	vector<vector<Edge>> graf(MIN_NODES);// sources and sinks
-
-	// nodes
-	vector<Vertex> nodes(MIN_NODES);
+	vector<vector<Edge>> graf(MIN_NODES);	// sources and sinks
+	vector<Vertex> nodes(MIN_NODES);		// nodes
 
 	uint i = 4;
 

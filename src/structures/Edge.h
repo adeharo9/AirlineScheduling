@@ -1,6 +1,9 @@
 #ifndef AIRLINESCHEDULING_ARESTA_H
 #define AIRLINESCHEDULING_ARESTA_H
 
+#include <stdexcept>
+
+using namespace std;
 
 class Edge
 {
