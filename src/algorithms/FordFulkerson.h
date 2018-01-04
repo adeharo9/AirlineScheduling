@@ -4,7 +4,6 @@
 #include <iostream>
 #include <climits>
 #include <cstring>
-#include <queue>
 #include <vector>
 
 typedef unsigned int uint;
@@ -24,7 +23,7 @@ public:
 
 	/* BASE ALGORITHM */
 
-	int fordFulkerson(vector<vector<int>> &rGraph, uint s, uint t, uint V);
+	int algorithm(vector<vector<int>> &rGraph, uint s, uint t, uint V);
 
 	/* OUTPUT METHODS */
 

@@ -2,7 +2,7 @@
 
 int EdmondsKarp::edmondsKarp(vector<vector<int>> &residualGraph, uint s, uint t, uint V)
 {
-	return fordFulkerson(residualGraph, s, t, V);
+	return algorithm(residualGraph, s, t, V);
 }
 
 /* Returns true if there is a path from source 's' to sink 't' in

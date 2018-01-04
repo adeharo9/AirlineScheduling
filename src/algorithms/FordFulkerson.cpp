@@ -1,7 +1,7 @@
 #include "FordFulkerson.h"
 
 // Returns the maximum flow from s to t in the given graph
-int FordFulkerson::fordFulkerson(vector<vector<int>> &graph, uint s, uint t, uint V)
+int FordFulkerson::algorithm(vector<vector<int>> &graph, uint s, uint t, uint V)
 {
 	uint u, v;
 
