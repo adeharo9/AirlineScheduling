@@ -30,70 +30,72 @@ void print_sol(const vector<vector<int>> &g,const vector<vector<int>> &ini){
 
 /* Returns true if there is a path from source 's' to sink 't' in
   residual graph. Also fills parent[] to store the path */
-bool bfs(const vector<vector<int>> &rGraph, int s, int t, int parent[],int V)
+bool bfs(const vector<vector<int>> &residualGraph, uint s, uint t, vector<int> &parent, uint V)
 {
-	// Create a visited array and mark all vertices as not visited
-	bool visited[V];
-	memset(visited, 0, sizeof(visited));
+	vector<bool> visited(V, false);	// Create a visited array and mark all vertices as not visited
+	queue<uint> visiting;			// Create a queue, enqueue source vertex and mark source vertex as visited
 
-	// Create a queue, enqueue source vertex and mark source vertex
-	// as visited
-	queue <int> q;
-	q.push(s);
 	visited[s] = true;
+	visiting.push(s);
 	parent[s] = -1;
 
-	// Standard BFS Loop
-	while (!q.empty())
+	while (not visiting.empty())
 	{
-		int u = q.front();
-		q.pop();
+		uint current = visiting.front();
+		visiting.pop();
 
-		for (int v=0; v<V; v++)
+		for (uint neighbour = 0; neighbour < V; ++neighbour)
 		{
-			if (visited[v]==false && rGraph[u][v] > 0)
+			if (not visited[neighbour] and residualGraph[current][neighbour] > 0)
 			{
-				q.push(v);
-				parent[v] = u;
-				visited[v] = true;
+				visiting.push(neighbour);
+				parent[neighbour] = current;
+				visited[neighbour] = true;
 			}
 		}
 	}
 
-	// If we reached sink in BFS starting from source, then return
-	// true, else false
-	return (visited[t] == true);
+	return visited[t];	// If we reached sink in BFS starting from source, then return true
 }
 
 // Returns the maximum flow from s to t in the given graph
-int EdmondsKarp(vector<vector<int>> & graph, int s, int t,int V)
+int EdmondsKarp(vector<vector<int>> &graph, uint s, uint t, uint V)
 {
 	int u, v;
 
 	// Create a residual graph and fill the residual graph with
 	// given capacities in the original graph as residual capacities
 	// in residual graph
-	vector<vector<int>> rGraph(V,vector<int>(V));
+	vector<vector<int>> rGraph(V, vector<int>(V));
+
 	// Residual graph where rGraph[i][j] indicates
-					 // residual capacity of edge from i to j (if there
-					 // is an edge. If rGraph[i][j] is 0, then there is not)
-	for (u = 0; u < V; u++){
-		if (u==4)cout<<"----------------------"<<endl;
+	// residual capacity of edge from i to j (if there
+	// is an edge. If rGraph[i][j] is 0, then there is not)
+	for (u = 0; u < V; ++u)
+	{
+		if (u == 4)
+		{
+			cout << "----------------------" << endl;
+		}
 
-		for (v = 0; v < V; v++){
-			if (v==4)cout<<'|';
+		for (v = 0; v < V; ++v)
+		{
+			if (v == 4)
+			{
+				cout << '|';
+			}
 
-			 rGraph[u][v] = graph[u][v];
-			 cout<<graph[u][v]<<" ";
-		   }
-			 cout<<endl;
-		   }
+			rGraph[u][v] = graph[u][v];
+			cout << graph[u][v] << " ";
+	   	}
+		cout << endl;
+    }
 
-	int parent[V];  // This array is filled by BFS and to store path
+	vector<int> parent(V);  // This array is filled by BFS and to store path
 
 	int max_flow = 0;  // There is no flow initially
-	// Augment the flow while tere is path from source to sink
-	while (bfs(rGraph, s, t, parent,V))
+	// Augment the flow while there is path from source to sink
+	while (bfs(rGraph, s, t, parent, V))
 	{
 		// Find minimum residual capacity of the edges along the
 		// path filled by BFS. Or we can say find the maximum flow
