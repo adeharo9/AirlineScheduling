@@ -23,8 +23,12 @@ void version1 (const vector<Vertex>& n, vector<vector<Edge>>& g)
 		{
 			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
 			{
-				if (n[i].getCity() == n[j].getCity() and n[j].getTime() - n[i].getTime() >= MIN_TRANSITION_TIME)
+				if (n[i].getCity() == n[j].getCity() and int(n[j].getTime()) - int(n[i].getTime()) >= MIN_TRANSITION_TIME)
 				{
+					if (i==7 and j==4){
+						cout<<"Aqui estoy, con tiempo: "<<n[j].getTime() - n[i].getTime() <<" "<< MIN_TRANSITION_TIME<<endl;
+					cout<<"n j "<<n[j].getTime()<<" n i "<< n[i].getTime()<<endl;
+				}
 					// aresta del desti i al origen j amb pes 1
 					g[i].emplace_back(Edge(j, 1));
 				}
@@ -73,25 +77,11 @@ void deleteDemand(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 {
-	int **gr;
+	int size=n.size();
 
-	gr = new int*[16];
+	vector<vector<int>> gr (size,vector<int>(size,0));
 
-	for(uint i = 0; i < 16; ++i)
-	{
-		gr[i] = new int[16];
-	}
-
-	for (uint u = 0; u < 16; ++u)
-	{
-		for (uint v = 0; v < 16; ++v) {
-			gr[u][v] = 0;
-		}
-	}
-
-	cout << "OK" << endl;
-
-	for(uint i = 0; i < n.size(); ++i)
+	for(uint i = 0; i <size; ++i)
 	{
 		for (uint j = 0; j < g[i].size(); ++j)
 		{
@@ -100,7 +90,7 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 	}
 
 	cout << "Max Flow: " << endl;
-	cout << endl << EdmondsKarp(gr, 0, 1) << endl;
+	cout << endl << EdmondsKarp(gr, 0, 1,size) << endl;
 }
 
 int main ()
@@ -139,7 +129,7 @@ int main ()
 		i += 2;
 	}
 
-	// TODO Falta la aresta de s a t amb capacitat k
+
 
 	int k = 2;
 
@@ -151,7 +141,7 @@ int main ()
 	deleteLowerBound(nodes, graf);	// Eliminar els lower bound
 	deleteDemand(nodes, graf);		// Eliminar les demandes
 
-	Debug::printState(nodes, graf);
 
+	Debug::printState(nodes, graf);
 	transformMax(nodes, graf);
 }

@@ -5,18 +5,19 @@
 #include <climits>
 #include <cstring>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
 // Number of vertices in given graph
-#define V 16
+
 
 /* Returns true if there is a path from source 's' to sink 't' in
   residual graph. Also fills parent[] to store the path */
-bool bfs(int rGraph[V][V], int s, int t, int parent[]);
+bool bfs(const vector<vector<int>> rGraph , int s, int t, int parent[],int V);
 
 // Returns the maximum flow from s to t in the given graph
-int EdmondsKarp(int **graph, int s, int t);
+int EdmondsKarp(vector<vector<int>> rGraph, int s, int t,int V);
 
 
 #endif //AIRLINESCHEDULING_EDMONDSKARP_H

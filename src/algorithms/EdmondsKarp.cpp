@@ -1,10 +1,9 @@
 // C++ program for implementation of Edmonds Karp algorithm
 
 #include "EdmondsKarp.h"
-
 /* Returns true if there is a path from source 's' to sink 't' in
   residual graph. Also fills parent[] to store the path */
-bool bfs(int rGraph[V][V], int s, int t, int parent[])
+bool bfs(const vector<vector<int>> rGraph, int s, int t, int parent[],int V)
 {
 	// Create a visited array and mark all vertices as not visited
 	bool visited[V];
@@ -40,14 +39,15 @@ bool bfs(int rGraph[V][V], int s, int t, int parent[])
 }
 
 // Returns the maximum flow from s to t in the given graph
-int EdmondsKarp(int **graph, int s, int t)
+int EdmondsKarp(vector<vector<int>> graph, int s, int t,int V)
 {
 	int u, v;
 
 	// Create a residual graph and fill the residual graph with
 	// given capacities in the original graph as residual capacities
 	// in residual graph
-	int rGraph[V][V]; // Residual graph where rGraph[i][j] indicates
+	vector<vector<int>> rGraph(V,vector<int>(V));
+	// Residual graph where rGraph[i][j] indicates
 					 // residual capacity of edge from i to j (if there
 					 // is an edge. If rGraph[i][j] is 0, then there is not)
 	for (u = 0; u < V; u++){
@@ -59,11 +59,11 @@ int EdmondsKarp(int **graph, int s, int t)
 			 cout<<endl;
 		   }
 
-	int parent[16];  // This array is filled by BFS and to store path
+	int parent[V];  // This array is filled by BFS and to store path
 
 	int max_flow = 0;  // There is no flow initially
 	// Augment the flow while tere is path from source to sink
-	while (bfs(rGraph, s, t, parent))
+	while (bfs(rGraph, s, t, parent,V))
 	{
 		// Find minimum residual capacity of the edges along the
 		// path filled by BFS. Or we can say find the maximum flow
@@ -92,12 +92,12 @@ int EdmondsKarp(int **graph, int s, int t)
 	//para comprobar
 	int pilotos=0;
 	cout<<"final del S con demandas"<<endl;
-	for (int i=0;i<16;i++){
+	for (int i=0;i<V;i++){
 	  cout<<rGraph[2][i]<<" ";
 	  if (rGraph[2][i]==1) pilotos++;
 	}
 	cout<<endl<<"final del S sin demandas"<<endl;
-	for (int i=0;i<16;i++){
+	for (int i=0;i<V;i++){
 	  cout<<rGraph[0][i]<<" ";
 	  if (rGraph[0][i]==1) pilotos++;
 	}
