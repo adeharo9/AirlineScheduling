@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-#include "../utils/Utils.h"
+typedef unsigned int uint;
 
 using namespace std;
 
