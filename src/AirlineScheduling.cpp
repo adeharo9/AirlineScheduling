@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "algorithms/EdmondsKarp.cpp"
+#include "algorithms/EdmondsKarp.h"
 #include "utils/Constants.h"
 #include "utils/Debug.h"
 #include "utils/Utils.h"
@@ -73,7 +73,14 @@ void deleteDemand(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 {
-	int gr[16][16];
+	int **gr;
+
+	gr = new int*[16];
+
+	for(uint i = 0; i < 16; ++i)
+	{
+		gr[i] = new int[16];
+	}
 
 	for (uint u = 0; u < 16; ++u)
 	{
@@ -93,7 +100,7 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 	}
 
 	cout << "Max Flow: " << endl;
-	cout << endl << EdmondKarp(gr, 0, 1) << endl;
+	cout << endl << EdmondsKarp(gr, 0, 1) << endl;
 }
 
 int main ()
