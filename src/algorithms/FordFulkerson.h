@@ -6,11 +6,13 @@
 #include <cstring>
 #include <vector>
 
+#include "Algorithm.h"
+
 typedef unsigned int uint;
 
 using namespace std;
 
-class FordFulkerson
+class FordFulkerson : public Algorithm
 {
 public:
 	/* CONSTRUCTORS */
@@ -23,7 +25,7 @@ public:
 
 	/* BASE ALGORITHM */
 
-	int algorithm(vector<vector<int>> &rGraph, uint s, uint t, uint V);
+	int algorithm(vector<vector<int>> &graph, uint s, uint t, uint V);
 
 	/* OUTPUT METHODS */
 
