@@ -33,7 +33,7 @@ void version1 (const vector<Vertex>& nodes, vector<vector<Edge>>& graph)
 						cout << "n j " << nodes[j].getTime() << " n i " << nodes[i].getTime() << endl;
 					}
 					// aresta del desti i al origen j amb pes 1
-					graph[i].emplace_back(Edge(j, 1));
+					graph[i].emplace_back(Edge(i, j, 1));
 				}
 			}
 		}
@@ -67,12 +67,12 @@ void deleteDemand(vector<Vertex> &nodes, vector<vector<Edge>> &graph)
 	{
 		if (nodes[i].getDemand() > 0)	// Si demanda > 0 es un sink i va a t
 		{
-			graph[i].emplace_back(Edge(1, nodes[i].getDemand()));
+			graph[i].emplace_back(Edge(i, 1, nodes[i].getDemand()));
 			nodes[i].setDemand(0);
 		}
 		else if (nodes[i].getDemand() < 0)	// Si es source s va a el
 		{
-			graph[0].emplace_back(Edge(i, -nodes[i].getDemand()));
+			graph[0].emplace_back(Edge(0, i, -nodes[i].getDemand()));
 			nodes[i].setDemand(0);
 		}
 	}
@@ -143,20 +143,20 @@ int main ()
 		cin >> departureTime;
 		cin >> arrivalTime;
 
-		nodes.emplace_back(Vertex(origin, departureTime));		// Afegeix el node de la ciutat d'origen
-		nodes.emplace_back(Vertex(destination, arrivalTime));	// Afegeix el node de la ciutat de destí
+		nodes.emplace_back(Vertex(origin, departureTime));				// Afegeix el node de la ciutat d'origen
+		nodes.emplace_back(Vertex(destination, arrivalTime));			// Afegeix el node de la ciutat de destí
 
-		graph.emplace_back(vector<Edge>(1, Edge(i + 1, 1, 1)));		// Afegeix l'aresta entre vols
+		graph.emplace_back(vector<Edge>(1, Edge(i, i + 1, 1, 1)));		// Afegeix l'aresta entre vols
 
-		graph[2].emplace_back(Edge(i, 1));						// Afegeix l'aresta del source al origen
-		graph.emplace_back(vector<Edge>(1, Edge(3, 1)));			// Afegeix l'aresta del desti al sink
+		graph[2].emplace_back(Edge(2, i, 1));							// Afegeix l'aresta del source al origen
+		graph.emplace_back(vector<Edge>(1, Edge(i + 1, 3, 1)));			// Afegeix l'aresta del desti al sink
 
 		i += 2;
 	}
 
 	int k = 2;
 
-	graph[2].emplace_back(Edge(3, k));
+	graph[2].emplace_back(Edge(2, 3, k));
 	nodes[2].setDemand(-k);
 	nodes[3].setDemand(k);
 
