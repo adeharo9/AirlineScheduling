@@ -14,7 +14,7 @@ private:
 
 	/* ATTRIBUTES */
 
-	uint flow;
+	uint destination;
 	uint lowerBound;
 	uint capacity;
 
@@ -24,7 +24,7 @@ public:
 
 	Edge() = default;
 
-	Edge(int flow, int capacity, int lowerBound = 0);
+	Edge(int destination, int capacity, int lowerBound = 0);
 
 	/* DESTRUCTORS */
 
@@ -38,7 +38,7 @@ public:
 
 	/* GET METHODS */
 
-	uint getN() const;
+	uint getDestination() const;
 
 	uint getLowerBound() const;
 
