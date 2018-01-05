@@ -41,7 +41,7 @@ void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
 		for (int j = 0; j < g[i].size(); ++j)
 		{
 			cout << "Edge" << j << ": ";
-			cout << "(" << g[i][j].getN() << ", low: " << g[i][j].getLowerBound() << ", capacity: " << g[i][j].getCapacity() << " )" << endl;
+			cout << "(" << g[i][j].getDestination() << ", low: " << g[i][j].getLowerBound() << ", capacity: " << g[i][j].getCapacity() << " )" << endl;
 		}
 	}
 }
