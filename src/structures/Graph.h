@@ -18,12 +18,21 @@ public:
 
 	/* ATTRIBUTES */
 
-	static const uint sourceWithoutDemand = 0;
+	static const uint firstElement = 0;
+	static const uint sourceWithoutDemand = firstElement;
 	static const uint sinkWithoutDemand = sourceWithoutDemand + 1;
 	static const uint sourceWithDemand = sinkWithoutDemand + 1;
 	static const uint sinkWithDemand = sourceWithDemand + 1;
 
 	static const uint firstVertex = sinkWithDemand + 1;
+
+	static const uint firstFlowNetworkVertex = sourceWithDemand;
+
+	static const uint firstOriginVertex = sinkWithDemand + 1;
+	static const uint firstDestinationVertex = firstOriginVertex + 1;
+
+	static const uint originStepSize = sourceWithDemand - sourceWithoutDemand;
+	static const uint destinationStepSize = sinkWithDemand - sourceWithoutDemand;
 
 private:
 
@@ -54,6 +63,8 @@ public:
 	Vertex& getVertex(uint index);
 
 	Edge& getEdge(uint indexI, uint indexJ);
+
+	vector<Edge>& getEdges(uint index);
 
 	uint vertexSize() const;
 

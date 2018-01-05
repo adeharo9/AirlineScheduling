@@ -44,6 +44,11 @@ Edge& Graph::getEdge(uint indexI, uint indexJ)
 	return this -> edges[indexI][indexJ];
 }
 
+vector<Edge>& Graph::getEdges(uint index)
+{
+	return this -> edges[index];
+}
+
 uint Graph::vertexSize() const
 {
 	return this -> vertices.size();
