@@ -52,11 +52,17 @@ public:
 
 	Graph();
 
+	explicit Graph(uint maxFlights);
+
+	Graph(const Graph &graph);
+
 	/* MODIFY METHODS */
 
 	void addEdge(const Vertex &origin, const Vertex &destination, int capacity = 0, int lowerBound = 0);
 
 	void addNeighbour(uint index, const Edge &destination);
+
+	void updateMaxFlights(uint maxFlights);
 
 	/* GET METHODS */
 

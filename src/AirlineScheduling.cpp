@@ -184,7 +184,7 @@ int main ()
 	// graf [3] sink with demands
 	//vector<vector<Edge>> graph(MIN_VERTICES);	// sources and sinks
 	//vector<Vertex> nodes(MIN_VERTICES);			// nodes
-	Graph data;
+	Graph data(57);
 
 	uint i = 4;
 
@@ -199,32 +199,14 @@ int main ()
 
 		data.addEdge(vorigin, vdestination);
 
-		/*nodes.emplace_back(Vertex(origin, departureTime));				// Afegeix el node de la ciutat d'origen
-		nodes.emplace_back(Vertex(destination, arrivalTime));			// Afegeix el node de la ciutat de destí
-
-		graph.emplace_back(vector<Edge>(1, Edge(i, i + 1, 1, 1)));		// Afegeix l'aresta entre vols
-
-		graph[2].emplace_back(Edge(2, i, 1));							// Afegeix l'aresta del source al origen
-		graph.emplace_back(vector<Edge>(1, Edge(i + 1, 3, 1)));			// Afegeix l'aresta del desti al sink*/
-
 		i += 2;
 	}
 
-	int k = 2;
+	/*int k = 56;
 
 	data.addNeighbour(Graph::sourceWithDemand, Edge(Graph::sourceWithDemand, Graph::sinkWithDemand, k));
 	data.getVertex(Graph::sourceWithDemand).setDemand(-k);
-	data.getVertex(Graph::sinkWithDemand).setDemand(k);
-
-	/*graph[2].emplace_back(Edge(2, 3, k));
-	nodes[2].setDemand(-k);
-	nodes[3].setDemand(k);*/
-
-	/*version1(nodes, graph, data);			// Afegir arestes si es pot arribar d'un vol a un altre
-	deleteLowerBound(nodes, graph, data);	// Eliminar els lower bound
-	deleteDemand(nodes, graph, data);		// Eliminar les demandes
-
-	transformMax(nodes, graph, data);*/
+	data.getVertex(Graph::sinkWithDemand).setDemand(k);*/
 
 	version1(data);			// Afegir arestes si es pot arribar d'un vol a un altre
 	deleteLowerBound(data);	// Eliminar els lower bound
