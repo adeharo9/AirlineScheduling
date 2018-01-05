@@ -4,7 +4,7 @@
 
 Graph::Graph() : lastEmplaced(minElements), edges(minElements), vertices(minElements)
 {
-
+	edges[sourceWithDemand].emplace_back(Edge(sourceWithDemand, sinkWithDemand, minFlowValue));
 }
 
 Graph::Graph(uint maxFlights) : lastEmplaced(minElements), edges(minElements), vertices(minElements)
