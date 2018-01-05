@@ -17,22 +17,23 @@ using namespace std;
 	per tot node destí comprobem per tot node origen si es possible fer transició
 	cost n * n on n son els vols
 */
-void version1 (const vector<Vertex>& n, vector<vector<Edge>>& g)
+void version1 (const vector<Vertex>& nodes, vector<vector<Edge>>& graph)
 {
-	for (uint i = 5; i < n.size(); i += 2)	// i es desti
+	for (uint i = 5; i < nodes.size(); i += 2)	// i es desti
 	{
-		for (uint j = 4; j < n.size(); j += 2)	// j es origen
+		for (uint j = 4; j < nodes.size(); j += 2)	// j es origen
 		{
 			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
 			{
-				if (n[i].getCity() == n[j].getCity() and int(n[j].getTime()) - int(n[i].getTime()) >= MIN_TRANSITION_TIME)
+				if (nodes[i].getCity() == nodes[j].getCity() and int(nodes[j].getTime()) - int(nodes[i].getTime()) >= MIN_TRANSITION_TIME)
 				{
-					if (i==7 and j==4){
-						cout<<"Aqui estoy, con tiempo: "<<n[j].getTime() - n[i].getTime() <<" "<< MIN_TRANSITION_TIME<<endl;
-					cout<<"n j "<<n[j].getTime()<<" n i "<< n[i].getTime()<<endl;
-				}
+					if (i == 7 and j == 4)
+					{
+						cout << "Aqui estoy, con tiempo: " << nodes[j].getTime() - nodes[i].getTime() << " " << MIN_TRANSITION_TIME << endl;
+						cout << "n j " << nodes[j].getTime() << " n i " << nodes[i].getTime() << endl;
+					}
 					// aresta del desti i al origen j amb pes 1
-					g[i].emplace_back(Edge(j, 1));
+					graph[i].emplace_back(Edge(j, 1));
 				}
 			}
 		}
@@ -60,34 +61,32 @@ void deleteLowerBound(vector<Vertex> &n, vector<vector<Edge>> &g)
   elimina les demandes  i actualizta el sink i drain reals amb les
   arestes necessaries
 */
-void deleteDemand(vector<Vertex> &n, vector<vector<Edge>> &g)
+void deleteDemand(vector<Vertex> &nodes, vector<vector<Edge>> &graph)
 {
-	for (uint i = 2; i < n.size(); ++i)
+	for (uint i = 2; i < nodes.size(); ++i)
 	{
-		if (n[i].getDemand() > 0)	// Si demanda > 0 es un sink i va a t
+		if (nodes[i].getDemand() > 0)	// Si demanda > 0 es un sink i va a t
 		{
-			g[i].emplace_back(Edge(1, n[i].getDemand()));
-			n[i].setDemand(0);
+			graph[i].emplace_back(Edge(1, nodes[i].getDemand()));
+			nodes[i].setDemand(0);
 		}
-		else if (n[i].getDemand() < 0)	// Si es source s va a el
+		else if (nodes[i].getDemand() < 0)	// Si es source s va a el
 		{
-			g[0].emplace_back(Edge(i, -n[i].getDemand()));
-			n[i].setDemand(0);
+			graph[0].emplace_back(Edge(i, -nodes[i].getDemand()));
+			nodes[i].setDemand(0);
 		}
 	}
 }
 
 void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 {
-	uint size = n.size();
+	vector<vector<int>> graph(n.size(), vector<int>(n.size(), 0));
 
-	vector<vector<int>> gr (size,vector<int>(size,0));
-
-	for(uint i = 0; i <size; ++i)
+	for(uint i = 0; i < n.size(); ++i)
 	{
 		for (uint j = 0; j < g[i].size(); ++j)
 		{
-			gr[i][g[i][j].getN()] = g[i][j].getCapacity();
+			graph[i][g[i][j].getDestination()] = g[i][j].getCapacity();
 		}
 	}
 
@@ -99,7 +98,7 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 	chrono.start(0);
 
-	cout << endl << edmondsKarp -> algorithm(gr, 0, 1, size) << endl;
+	cout << endl << edmondsKarp -> algorithm(graph, 0, 1, n.size()) << endl;
 
 	chrono.stop(0);
 
@@ -112,7 +111,7 @@ void transformMax(vector<Vertex> &n, vector<vector<Edge>> &g)
 
 	chrono.start(1);
 
-	cout << endl << fordFulkersonDFS -> algorithm(gr, 0, 1, size) << endl;
+	cout << endl << fordFulkersonDFS -> algorithm(graph, 0, 1, n.size()) << endl;
 
 	chrono.stop(1);
 
@@ -133,7 +132,7 @@ int main ()
 	// graf [1] sink without demands
 	// graf [2] source with demands
 	// graf [3] sink with demands
-	vector<vector<Edge>> graf(MIN_VERTICES);	// sources and sinks
+	vector<vector<Edge>> graph(MIN_VERTICES);	// sources and sinks
 	vector<Vertex> nodes(MIN_VERTICES);			// nodes
 
 	uint i = 4;
@@ -147,27 +146,25 @@ int main ()
 		nodes.emplace_back(Vertex(origin, departureTime));		// Afegeix el node de la ciutat d'origen
 		nodes.emplace_back(Vertex(destination, arrivalTime));	// Afegeix el node de la ciutat de destí
 
-		graf.emplace_back(vector<Edge>(1, Edge(i + 1, 1)));		// Afegeix l'aresta entre vols
+		graph.emplace_back(vector<Edge>(1, Edge(i + 1, 1, 1)));		// Afegeix l'aresta entre vols
 
-		graf[i][0].setLowerBound(1);
-
-		graf[2].emplace_back(Edge(i, 1));						// Afegeix l'aresta del source al origen
-		graf.emplace_back(vector<Edge>(1, Edge(3, 1)));			// Afegeix l'aresta del desti al sink
+		graph[2].emplace_back(Edge(i, 1));						// Afegeix l'aresta del source al origen
+		graph.emplace_back(vector<Edge>(1, Edge(3, 1)));			// Afegeix l'aresta del desti al sink
 
 		i += 2;
 	}
 
 	int k = 2;
 
-	graf[2].emplace_back(Edge(3, k));
+	graph[2].emplace_back(Edge(3, k));
 	nodes[2].setDemand(-k);
 	nodes[3].setDemand(k);
 
-	version1(nodes, graf);			// Afegir arestes si es pot arribar d'un vol a un altre
-	deleteLowerBound(nodes, graf);	// Eliminar els lower bound
-	deleteDemand(nodes, graf);		// Eliminar les demandes
+	version1(nodes, graph);			// Afegir arestes si es pot arribar d'un vol a un altre
+	deleteLowerBound(nodes, graph);	// Eliminar els lower bound
+	deleteDemand(nodes, graph);		// Eliminar les demandes
 
 
-	transformMax(nodes, graf);
-	Debug::printState(nodes, graf);
+	transformMax(nodes, graph);
+	Debug::printState(nodes, graph);
 }
