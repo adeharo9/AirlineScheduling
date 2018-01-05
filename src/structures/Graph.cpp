@@ -20,9 +20,9 @@ void Graph::addEdge(const Vertex &origin, const Vertex &destination, int capacit
 	vertices.emplace_back(origin);
 	vertices.emplace_back(destination);
 
-	edges[sourceWithDemand].emplace_back(Edge(sourceWithDemand, originIndex, minFlowValue, maxFlowValue));
+	edges[sourceWithDemand].emplace_back(Edge(sourceWithDemand, originIndex, maxFlowValue, minFlowValue));
 	edges.emplace_back(vector<Edge>(1, Edge(originIndex, destinationIndex, uint(capacity), uint(lowerBound))));
-	edges.emplace_back(vector<Edge>(1, Edge(destinationIndex, sinkWithDemand, minFlowValue, maxFlowValue)));
+	edges.emplace_back(vector<Edge>(1, Edge(destinationIndex, sinkWithDemand, maxFlowValue, minFlowValue)));
 
 	lastEmplaced += 2;
 }
