@@ -42,9 +42,11 @@ CPL_FILES = $(CPL_FILES_AUX:.[EXT]=)
 
 # FILE STRUCTURE
 HEADERS = \
+    [FILEPATH]/algorithms/Algorithm.[EXT] \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
+    [FILEPATH]/benchmark/Simulation.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
@@ -57,6 +59,7 @@ SOURCES = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
+    [FILEPATH]/benchmark/Simulation.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
@@ -66,6 +69,7 @@ SOURCES = \
 # DIRECTORY STRUCTURE
 DIRECTORIES = \
     bin/algorithms \
+    bin/benchmark \
 	bin/structures \
 	bin/utils
 
