@@ -62,6 +62,8 @@ public:
 
 	void end();
 
+	void reset();
+
 private:
 
 	void input();

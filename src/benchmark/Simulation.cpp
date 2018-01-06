@@ -83,6 +83,10 @@ void Simulation::end()
 	results.close();
 }
 
+void Simulation::reset()
+{
+	graph = Graph();
+}
 
 /*
 	afegeix arestes segibs el criteri sobre quines transicions son posibles de la versió 1
