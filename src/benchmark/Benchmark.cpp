@@ -28,4 +28,6 @@ void Benchmark::runSingle(uint index1, uint index2, uint index3, Algorithm* algo
 
 	simulation.end();
 	simulation.reset();
+
+	chrono.reset(0);
 }
