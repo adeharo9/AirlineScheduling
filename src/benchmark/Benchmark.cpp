@@ -1,5 +1,27 @@
 #include "Benchmark.h"
 
+const string Benchmark::RESULTS_DIR = "./results/";
+const string Benchmark::RESULTS_V1_FILENAME = "Resultado1";
+const string Benchmark::RESULTS_V2_FILENAME = "Resultado2";
+const string Benchmark::RESULTS_EXTENSION = ".txt";
+
+const string Benchmark::RESULTS_V1_FILEPATH = RESULTS_DIR + RESULTS_V1_FILENAME + RESULTS_EXTENSION;
+const string Benchmark::RESULTS_V2_FILEPATH = RESULTS_DIR + RESULTS_V2_FILENAME + RESULTS_EXTENSION;
+
+void Benchmark::initialize()
+{
+	ofstream results;
+
+	results.open(RESULTS_V1_FILEPATH, fstream::trunc);
+	results.close();
+
+	results.open(RESULTS_V2_FILEPATH, fstream::trunc);
+	results.close();
+
+	//remove(RESULTS_V1_FILEPATH.c_str());
+	//remove(RESULTS_V2_FILEPATH.c_str());
+}
+
 void Benchmark::run()
 {
 	EdmondsKarp edmondsKarp;
