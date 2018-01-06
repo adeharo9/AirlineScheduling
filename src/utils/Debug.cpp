@@ -45,3 +45,35 @@ void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
 		}
 	}
 }
+
+void Debug::printGraph(Graph &graph)
+{
+	vector<vector<int>> adjacenceMatrixGraph(graph.vertexSize(), vector<int>(graph.vertexSize(), 0));
+
+	for (uint i = Graph::firstElement; i < graph.vertexSize(); ++i)
+	{
+		for (uint j = 0; j < graph.getEdges(i).size(); ++j)
+		{
+			adjacenceMatrixGraph[i][graph.getEdge(i, j).getDestination()] = graph.getEdge(i, j).getCapacity();
+		}
+	}
+
+	for (uint u = 0; u < adjacenceMatrixGraph.size(); ++u)
+	{
+		if (u == 4)
+		{
+			cout << "--------------------------------" << endl;
+		}
+
+		for (uint v = 0; v < adjacenceMatrixGraph[0].size(); ++v)
+		{
+			if (v == 4)
+			{
+				cout << '|';
+			}
+
+			cout << adjacenceMatrixGraph[u][v] << " ";
+		}
+		cout << endl;
+	}
+}
