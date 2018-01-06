@@ -1,13 +1,14 @@
 #ifndef AIRLINESCHEDULING_FORDFULKERSONDFS_H
 #define AIRLINESCHEDULING_FORDFULKERSONDFS_H
 
-#include <iostream>
+
 #include <climits>
-#include <cstring>
 #include <stack>
 #include <vector>
 
 #include "FordFulkerson.h"
+
+using namespace std;
 
 class FordFulkersonDFS : public FordFulkerson
 {
@@ -22,4 +23,4 @@ class FordFulkersonDFS : public FordFulkerson
 };
 
 
-#endif //AIRLINESCHEDULING_FORDFULKERSONDFS_H
+#endif // AIRLINESCHEDULING_FORDFULKERSONDFS_H

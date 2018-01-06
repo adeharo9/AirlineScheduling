@@ -1,16 +1,16 @@
 #ifndef AIRLINESCHEDULING_FORDFULKERSON_H
 #define AIRLINESCHEDULING_FORDFULKERSON_H
 
+
 #include <iostream>
 #include <climits>
-#include <cstring>
 #include <vector>
 
 #include "Algorithm.h"
 
-typedef unsigned int uint;
-
 using namespace std;
+
+typedef unsigned int uint;
 
 class FordFulkerson : public Algorithm
 {
@@ -34,4 +34,4 @@ public:
 };
 
 
-#endif //AIRLINESCHEDULING_FORDFULKERSON_H
+#endif // AIRLINESCHEDULING_FORDFULKERSON_H
