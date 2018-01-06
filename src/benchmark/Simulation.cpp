@@ -71,14 +71,16 @@ void Simulation::run()
 
 void Simulation::end()
 {
-	results.open(RESULTS_V1_FILENAME, fstream::out | fstream::app);
+	results.open(RESULTS_V1_FILEPATH, fstream::out | fstream::app);
 
 	if(not results.is_open())
 	{
-		results.open(RESULTS_V1_FILENAME, fstream::out | fstream::trunc);
+		results.open(RESULTS_V1_FILEPATH, fstream::out | fstream::trunc);
 	}
 
 	results << instanceName << " " << maxFlow << endl;
+
+	results.close();
 }
 
 
