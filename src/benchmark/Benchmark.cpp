@@ -39,11 +39,12 @@ void Benchmark::runSingle(uint index1, uint index2, uint index3, Algorithm* algo
 {
 	simulation.load(index1, index2, index3);
 	simulation.setAlgorithm(algorithm);
-	simulation.initialize();
+	//simulation.initialize();
 
 	chrono.start(0);
 	simulation.run();
 	chrono.stop(0);
+    cout<<"Duration: "<<chrono.duration(0)<<endl;
 
 	simulation.end();
 	simulation.reset();

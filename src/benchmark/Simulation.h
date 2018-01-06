@@ -43,6 +43,7 @@ private:
 	imatrix adjacenceMatrixGraph;
 
 	int maxFlow;
+	uint maxFlights;
 
 public:
 
@@ -77,6 +78,8 @@ private:
 	void deleteDemand();
 
 	void transformMax();
+
+	int dicotomic(uint low,uint high);
 };
 
 

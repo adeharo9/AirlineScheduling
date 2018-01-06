@@ -6,6 +6,6 @@ int main ()
 	EdmondsKarp edmondsKarp;
 
 	benchmark.initialize();
-	benchmark.run();
-	//benchmark.runSingle(100, 10, 1, &edmondsKarp);
+	//benchmark.run();
+	benchmark.runSingle(100, 10, 10, &edmondsKarp);
 }

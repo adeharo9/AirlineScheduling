@@ -1,5 +1,5 @@
 #include "Simulation.h"
-
+#include <iostream>
 const string Simulation::DATA_DIR = "./data/";
 const string Simulation::INSTANCE_NAME = "instance";
 const string Simulation::INSTANCE_SEPARATOR = "_";
@@ -20,7 +20,7 @@ void Simulation::input()
 	uint departureTime;
 	uint arrivalTime;
 
-	uint maxFlights = 0;
+	maxFlights = 0;
 
 	while (instance >> originCity)	// operacions descrites a la pagina 390 del llibre
 	{
@@ -38,8 +38,8 @@ void Simulation::input()
 
 	instance.close();
 
-	graph.updateMaxFlights(maxFlights);
 }
+
 
 void Simulation::load(uint index1, uint index2, uint index3)
 {
@@ -61,12 +61,32 @@ void Simulation::initialize()
 	version1();				// Afegir arestes si es pot arribar d'un vol a un altre
 	deleteLowerBound();		// Eliminar els lower bound
 	deleteDemand();			// Eliminar les demandes
-	transformMax();
+    transformMax();
 }
+
 
 void Simulation::run()
 {
-	maxFlow = algorithm -> algorithm(adjacenceMatrixGraph, 0, 1, graph.vertexSize());
+	maxFlow=dicotomic(0,maxFlights);
+}
+
+int Simulation::dicotomic(uint low, uint high) {
+	if (high==low){
+		cout<<"FOUND MIN : "<<low<<endl;
+        //print solution here
+
+       // algorithm -> print_sol(adjacenceMatrixGraph,adjacenceMatrixGraph);
+		return low;}
+	int k=(high+low)/2;
+	graph.updateMaxFlights(k);
+    initialize();
+
+	int neededFlow=k+maxFlights;
+	int flow=algorithm -> algorithm(adjacenceMatrixGraph, 0, 1, graph.vertexSize());
+	if (flow<neededFlow)
+		return dicotomic(k+1,high);
+	else
+		return dicotomic(low,k);
 }
 
 void Simulation::end()
