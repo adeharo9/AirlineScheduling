@@ -1,9 +1,7 @@
 #ifndef AIRLINESCHEDULING_EDMONDSKARP_H
 #define AIRLINESCHEDULING_EDMONDSKARP_H
 
-#include <iostream>
 #include <climits>
-#include <cstring>
 #include <queue>
 #include <vector>
 
@@ -13,7 +11,6 @@ using namespace std;
 
 typedef unsigned int uint;
 
-// Traces back and prints the solution
 class EdmondsKarp : public FordFulkerson
 {
 public:
