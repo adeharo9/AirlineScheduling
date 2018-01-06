@@ -1,15 +1,10 @@
-#include <iostream>
-
-#include "algorithms/EdmondsKarp.h"
-#include "benchmark/Simulation.h"
+#include "benchmark/Benchmark.h"
 
 int main ()
 {
-	Simulation simulation;
+	Benchmark benchmark;
 	EdmondsKarp edmondsKarp;
-	simulation.load(100, 10, 1);
-	simulation.setAlgorithm(&edmondsKarp);
-	simulation.initialize();
-	simulation.run();
-	simulation.end();
+
+	//benchmark.run();
+	benchmark.runSingle(100, 10, 1, &edmondsKarp);
 }
