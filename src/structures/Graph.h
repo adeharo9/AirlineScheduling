@@ -32,7 +32,7 @@ public:
 	static const uint firstDestinationVertex = firstOriginVertex + 1;
 
 	static const uint originStepSize = sourceWithDemand - sourceWithoutDemand;
-	static const uint destinationStepSize = sinkWithDemand - sourceWithoutDemand;
+	static const uint destinationStepSize = sinkWithDemand - sinkWithoutDemand;
 
 private:
 
@@ -40,6 +40,8 @@ private:
 	static const uint maxFlowValue = 1;
 
 	static const uint minElements =  sinkWithDemand + 1;
+
+	static const uint sinkWithDemandListIndex = 0;
 
 	uint lastEmplaced;
 
@@ -58,7 +60,7 @@ public:
 
 	/* MODIFY METHODS */
 
-	void addEdge(const Vertex &origin, const Vertex &destination, int capacity = 0, int lowerBound = 0);
+	void addEdge(const Vertex &origin, const Vertex &destination);
 
 	void addNeighbour(uint index, const Edge &destination);
 

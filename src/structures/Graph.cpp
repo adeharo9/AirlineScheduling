@@ -22,11 +22,8 @@ Graph::Graph(const Graph &graph) : lastEmplaced(graph.lastEmplaced), edges(graph
 
 /* MODIFY METHODS */
 
-void Graph::addEdge(const Vertex &origin, const Vertex &destination, int capacity, int lowerBound)
+void Graph::addEdge(const Vertex &origin, const Vertex &destination)
 {
-	if(capacity < 0) throw invalid_argument("capacity");
-	if(lowerBound < 0) throw invalid_argument("lowerBound");
-
 	uint originIndex = lastEmplaced;
 	uint destinationIndex = originIndex + 1;
 
@@ -34,7 +31,7 @@ void Graph::addEdge(const Vertex &origin, const Vertex &destination, int capacit
 	vertices.emplace_back(destination);		// Afegeix el node de la ciutat de destí
 
 	edges[sourceWithDemand].emplace_back(Edge(sourceWithDemand, originIndex, maxFlowValue, minFlowValue));			// Afegeix l'aresta del source al origen
-	edges.emplace_back(vector<Edge>(1, Edge(originIndex, destinationIndex, uint(capacity), uint(lowerBound))));		// Afegeix l'aresta entre vols
+	edges.emplace_back(vector<Edge>(1, Edge(originIndex, destinationIndex, maxFlowValue, maxFlowValue)));		// Afegeix l'aresta entre vols
 	edges.emplace_back(vector<Edge>(1, Edge(destinationIndex, sinkWithDemand, maxFlowValue, minFlowValue)));		// Afegeix l'aresta del desti al sink
 
 	lastEmplaced += 2;
@@ -47,7 +44,7 @@ void Graph::addNeighbour(uint index, const Edge &destination)
 
 void Graph::updateMaxFlights(uint maxFlights)
 {
-	edges[sourceWithDemand][sinkWithDemand].setCapacity(maxFlights);
+	edges[sourceWithDemand][sinkWithDemandListIndex].setCapacity(maxFlights);
 
 	vertices[sourceWithDemand].setDemand(-maxFlights);
 	vertices[sinkWithDemand].setDemand(maxFlights);
