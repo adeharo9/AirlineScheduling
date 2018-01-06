@@ -52,9 +52,7 @@ HEADERS = \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
 	[FILEPATH]/utils/Chrono.[EXT] \
-	[FILEPATH]/utils/Constants.[EXT] \
-	[FILEPATH]/utils/Debug.[EXT] \
-	[FILEPATH]/utils/Utils.[EXT]
+	[FILEPATH]/utils/Debug.[EXT]
 
 SOURCES = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \

@@ -1,8 +1,0 @@
-#ifndef AIRLINESCHEDULING_UTILS_H
-#define AIRLINESCHEDULING_UTILS_H
-
-
-typedef unsigned int uint;
-
-
-#endif //AIRLINESCHEDULING_UTILS_H
