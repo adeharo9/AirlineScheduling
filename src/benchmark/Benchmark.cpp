@@ -17,9 +17,6 @@ void Benchmark::initialize()
 
 	results.open(RESULTS_V2_FILEPATH, fstream::trunc);
 	results.close();
-
-	//remove(RESULTS_V1_FILEPATH.c_str());
-	//remove(RESULTS_V2_FILEPATH.c_str());
 }
 
 void Benchmark::run()
