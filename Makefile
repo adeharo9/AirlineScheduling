@@ -46,6 +46,7 @@ HEADERS = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
+    [FILEPATH]/benchmark/Benchmark.[EXT] \
     [FILEPATH]/benchmark/Simulation.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
@@ -59,6 +60,7 @@ SOURCES = \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
+    [FILEPATH]/benchmark/Benchmark.[EXT] \
     [FILEPATH]/benchmark/Simulation.[EXT] \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
