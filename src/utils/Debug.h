@@ -14,7 +14,7 @@ class Debug
 {
 public:
 
-	static void printState(const vector<Vertex>& n, const vector<vector<Edge>>& g);
+	static void printState(const vector<Vertex>& n, const vector<vector<Edge> >& g);
 
 	static void printGraph(Graph &graph);
 

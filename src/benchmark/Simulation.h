@@ -9,7 +9,7 @@
 
 using namespace std;
 
-typedef vector<vector<int>> imatrix;
+typedef vector<vector<int> > imatrix;
 
 class Simulation
 {
@@ -55,7 +55,7 @@ public:
 
 	void load(uint index1, uint index2, uint index3);
 
-	void setAlgorithm(Algorithm* algorithm);
+	void setAlgorithm(Algorithm* inAlgorithm);
 
 	void initialize();
 

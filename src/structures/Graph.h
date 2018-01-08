@@ -45,7 +45,7 @@ private:
 
 	uint lastEmplaced;
 
-	vector<vector<Edge>> edges;
+	vector<vector<Edge> > edges;
 	vector<Vertex> vertices;
 
 public:

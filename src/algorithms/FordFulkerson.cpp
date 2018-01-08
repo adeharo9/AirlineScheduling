@@ -1,14 +1,14 @@
 #include "FordFulkerson.h"
 
 // Returns the maximum flow from s to t in the given graph
-int FordFulkerson::algorithm(vector<vector<int>> &graph, uint s, uint t, uint V)
+int FordFulkerson::algorithm(vector<vector<int> > &graph, uint s, uint t, uint V)
 {
 	uint u, v;
 
 	// Create a residual graph and fill the residual graph with
 	// given capacities in the original graph as residual capacities
 	// in residual graph
-	vector<vector<int>> residualGraph(V, vector<int>(V));
+	vector<vector<int> > residualGraph(V, vector<int>(V));
 
 	// Residual graph where residualGraph[i][j] indicates
 	// residual capacity of edge from i to j (if there
@@ -89,7 +89,7 @@ int FordFulkerson::algorithm(vector<vector<int>> &graph, uint s, uint t, uint V)
 	return max_flow;
 }
 
-void FordFulkerson::print_sol(const vector<vector<int>> &g,const vector<vector<int>> &ini){
+void FordFulkerson::print_sol(const vector<vector<int> > &g,const vector<vector<int> > &ini){
 	cout<<"Resultat: "<<endl<<endl;
 	//si s'ha seguit una aresta amb capacitat 1, al graf final te capacitat 0
 	int p=1;

@@ -2,28 +2,28 @@
 
 /* CONSTRUCTORS */
 
-Edge::Edge(int origin, int destination, int capacity, int lowerBound) : origin(uint(origin)), destination(uint(destination)), capacity(uint(capacity)), lowerBound(uint(lowerBound))
+Edge::Edge(int inOrigin, int inDestination, int inCapacity, int inLowerBound) : origin(uint(inOrigin)), destination(uint(inDestination)), capacity(uint(inCapacity)), lowerBound(uint(inLowerBound))
 {
-	if(origin < 0) throw invalid_argument("origin");
-	if(destination < 0) throw invalid_argument("destination");
-	if(capacity < 0) throw invalid_argument("capacity");
-	if(lowerBound < 0) throw invalid_argument("lowerBound");
+	if(inOrigin < 0) throw invalid_argument("inOrigin");
+	if(inDestination < 0) throw invalid_argument("inDestination");
+	if(inCapacity < 0) throw invalid_argument("inCapacity");
+	if(inLowerBound < 0) throw invalid_argument("inLowerBound");
 }
 
 /* SET METHODS */
 
-void Edge::setLowerBound(int lowerBound)
+void Edge::setLowerBound(int inLowerBound)
 {
-	if(lowerBound < 0) throw invalid_argument("lowerBound");
+	if(inLowerBound < 0) throw invalid_argument("inLowerBound");
 
-	this -> lowerBound = (uint) lowerBound;
+	this -> lowerBound = (uint) inLowerBound;
 }
 
-void Edge::setCapacity(int capacity)
+void Edge::setCapacity(int inCapacity)
 {
-	if(capacity < 0) throw invalid_argument("capacity");
+	if(inCapacity < 0) throw invalid_argument("inCapacity");
 
-	this -> capacity = (uint) capacity;
+	this -> capacity = (uint) inCapacity;
 }
 
 /* GET METHODS */

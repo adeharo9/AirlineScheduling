@@ -17,8 +17,8 @@ private:
 	uint origin;
 	uint destination;
 
-	uint lowerBound;
 	uint capacity;
+	uint lowerBound;
 
 public:
 
@@ -26,7 +26,7 @@ public:
 
 	Edge() = default;
 
-	Edge(int origin, int destination, int capacity, int lowerBound = 0);
+	Edge(int inOrigin, int inDestination, int inCapacity, int inLowerBound = 0);
 
 	/* DESTRUCTORS */
 
@@ -34,9 +34,9 @@ public:
 
 	/* SET METHODS */
 
-	void setLowerBound(int lowerBound);
+	void setLowerBound(int inLowerBound);
 
-	void setCapacity(int capacity);
+	void setCapacity(int inCapacity);
 
 	/* GET METHODS */
 

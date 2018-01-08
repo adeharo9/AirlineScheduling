@@ -15,11 +15,11 @@ class FordFulkersonDFS : public FordFulkerson
 
 	/* ALIASES OF BASE CLASS METHODS */
 
-	int fordFulkersonDFS(vector<vector<int>> &residualGraph, uint s, uint t, uint V);
+	int fordFulkersonDFS(vector<vector<int> > &residualGraph, uint s, uint t, uint V);
 
 	/* GRAPH TRAVELING METHODS */
 
-	bool travelGraph(const vector<vector<int>> &residualGraph, uint s, uint t, vector<uint> &parent, uint V) override;
+	bool travelGraph(const vector<vector<int> > &residualGraph, uint s, uint t, vector<uint> &parent, uint V) override;
 };
 
 

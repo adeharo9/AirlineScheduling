@@ -21,15 +21,15 @@ public:
 
 	/* GRAPH TRAVELING METHODS */
 
-	virtual bool travelGraph(const vector<vector<int>> &rGraph , uint s, uint t, vector<uint> &parent, uint V) = 0;
+	virtual bool travelGraph(const vector<vector<int> > &rGraph , uint s, uint t, vector<uint> &parent, uint V) = 0;
 
 	/* BASE ALGORITHM */
 
-	int algorithm(vector<vector<int>> &graph, uint s, uint t, uint V);
+	int algorithm(vector<vector<int> > &graph, uint s, uint t, uint V);
 
 	/* OUTPUT METHODS */
 
-	void print_sol(const vector<vector<int>> &g, const vector<vector<int>> &ini);
+	void print_sol(const vector<vector<int> > &g, const vector<vector<int> > &ini);
 
 };
 

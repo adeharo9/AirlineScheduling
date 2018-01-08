@@ -8,8 +8,8 @@ SRC_DIR = ./src
 BIN_DIR = ./bin
 
 # EXECUTABLES
-CPL = g++
-LNK = g++
+CPL = g++-4.8
+LNK = g++-4.8
 RM = rm
 
 # EXTENSIONS
@@ -23,7 +23,7 @@ EXE_EXT = .exe
 CPL_OPTIONS = -c -o
 
 LNK_OPTIONS = -o $@
-LNK_FLAGS = -D_JUDGE_ -DNDEBUG -D_GLIBCXX_DEBUG -O3 -Wall -Wextra -Werror -Wno-sign-compare -Wshadow -std=c++17
+LNK_FLAGS = -D_JUDGE_ -DNDEBUG -D_GLIBCXX_DEBUG -O3 -Wall -Wextra -Werror -Wno-sign-compare -Wshadow -std=c++11
 
 RM_OPTIONS = -rf
 
@@ -80,7 +80,7 @@ $(DIRECTORIES):
 	mkdir -p $(DIRECTORIES)
 
 $(BIN_FILES): $(HDR_FILES) $(SRC_FILES) | $(DIRECTORIES)
-	$(foreach CPL_FILE, $(CPL_FILES), $(CPL) $(CPL_OPTIONS) $(BIN_DIR)$(CPL_FILE)$(BIN_EXT) $(SRC_DIR)$(CPL_FILE)$(SRC_EXT);)
+	$(foreach CPL_FILE, $(CPL_FILES), $(CPL) $(CPL_OPTIONS) $(BIN_DIR)$(CPL_FILE)$(BIN_EXT) $(SRC_DIR)$(CPL_FILE)$(SRC_EXT) $(LNK_FLAGS);)
 
 $(EXE_FILE): $(BIN_FILES)
 	$(LNK) $(LNK_OPTIONS) $^ $(LNK_FLAGS)

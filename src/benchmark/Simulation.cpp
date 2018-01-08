@@ -51,9 +51,9 @@ void Simulation::load(uint index1, uint index2, uint index3)
 	this -> input();
 }
 
-void Simulation::setAlgorithm(Algorithm* algorithm)
+void Simulation::setAlgorithm(Algorithm* inAlgorithm)
 {
-	this -> algorithm = algorithm;
+	this -> algorithm = inAlgorithm;
 }
 
 void Simulation::initialize()

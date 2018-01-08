@@ -1,6 +1,6 @@
 #include "Debug.h"
 
-void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
+void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge> >& g)
 {
 	for(int i = 0; i < n.size(); ++i)
 	{
@@ -48,7 +48,7 @@ void Debug::printState(const vector<Vertex>& n, const vector<vector<Edge>>& g)
 
 void Debug::printGraph(Graph &graph)
 {
-	vector<vector<int>> adjacenceMatrixGraph(graph.vertexSize(), vector<int>(graph.vertexSize(), 0));
+	vector<vector<int> > adjacenceMatrixGraph(graph.vertexSize(), vector<int>(graph.vertexSize(), 0));
 
 	for (uint i = Graph::firstElement; i < graph.vertexSize(); ++i)
 	{

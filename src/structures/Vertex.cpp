@@ -2,17 +2,17 @@
 
 /* CONSTRUCTORS */
 
-Vertex::Vertex(int city, int time, int demand) : city((uint) city), time((uint) time), demand(demand)
+Vertex::Vertex(int inCity, int inTime, int inDemand) : city((uint) inCity), time((uint) inTime), demand(inDemand)
 {
-	if(city < 0) throw invalid_argument("city");
-	if(time < 0) throw invalid_argument("time");
+	if(inCity < 0) throw invalid_argument("inCity");
+	if(inTime < 0) throw invalid_argument("inTime");
 }
 
 /* SET METHODS */
 
-void Vertex::setDemand(int demand)
+void Vertex::setDemand(int inDemand)
 {
-	this -> demand = demand;
+	this -> demand = inDemand;
 }
 
 void Vertex::incrementDemand(int increment)

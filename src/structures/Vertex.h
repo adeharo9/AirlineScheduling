@@ -24,7 +24,7 @@ public:
 
 	Vertex() = default;
 
-	Vertex(int city, int time, int demand = 0);
+	Vertex(int inCity, int inTime, int inDemand = 0);
 
 	/* DESTRUCTORS */
 
@@ -32,7 +32,7 @@ public:
 
 	/* SET METHODS */
 
-	void setDemand(int demand);
+	void setDemand(int inDemand);
 
 	void incrementDemand(int increment = 1);
 
