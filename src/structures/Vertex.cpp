@@ -8,6 +8,13 @@ Vertex::Vertex(int inCity, int inTime, int inDemand) : city((uint) inCity), time
 	if(inTime < 0) throw invalid_argument("inTime");
 }
 
+Vertex::Vertex(const Vertex &vertex)
+{
+	this -> city = vertex.city;
+	this -> time = vertex.time;
+	this -> demand = vertex.demand;
+}
+
 /* SET METHODS */
 
 void Vertex::setDemand(int inDemand)

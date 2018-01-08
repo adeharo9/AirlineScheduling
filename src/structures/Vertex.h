@@ -26,6 +26,8 @@ public:
 
 	Vertex(int inCity, int inTime, int inDemand = 0);
 
+	Vertex(const Vertex &vertex);
+
 	/* DESTRUCTORS */
 
 	~Vertex() = default;
