@@ -5,6 +5,8 @@
 #include "../algorithms/EdmondsKarp.h"
 #include "../utils/Chrono.h"
 
+using namespace std;
+
 class Benchmark
 {
 private:
