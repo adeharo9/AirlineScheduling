@@ -147,10 +147,7 @@ int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
 			algorithm -> algorithm(adjacenceMatrixGraph, adjacenceMatrixResidualGraph, 0, 1, graph.vertexSize());
 		}
 
-		cout << "FOUND MIN: " << low << endl;	// Print solution here
-
 		return low;
-
 	}
 	else
 	{
