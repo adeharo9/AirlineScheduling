@@ -1,11 +1,17 @@
 # OUTPUT FILE
 EXE_FILE = AirlineScheduling$(EXE_EXT)
+OUT1_FILE = Output1.txt
+OUT2_FILE = Output2.txt
 
 # DIRECTORIES
 HDR_DIR = ./src
 SRC_DIR = ./src
 
 BIN_DIR = ./bin
+
+BMK_DIR = ./results/benchmark
+OUT_DIR = ./results/output
+SIM_DIR = ./results/simulations
 
 # EXECUTABLES
 CPL = g++
@@ -23,7 +29,7 @@ EXE_EXT = .exe
 CPL_OPTIONS = -c -o
 
 LNK_OPTIONS = -o $@
-LNK_FLAGS = -D_JUDGE_ -DNDEBUG -D_GLIBCXX_DEBUG -O3 -Wall -Wextra -Werror -Wno-sign-compare -Wshadow -std=c++11
+CPL_FLAGS = -D_JUDGE_ -DNDEBUG -D_GLIBCXX_DEBUG -O3 -Wall -Wextra -Werror -Wno-sign-compare -Wshadow -std=c++11
 
 RM_OPTIONS = -rf
 
@@ -81,13 +87,20 @@ $(DIRECTORIES):
 	mkdir -p $(DIRECTORIES)
 
 $(BIN_FILES): $(HDR_FILES) $(SRC_FILES) | $(DIRECTORIES)
-	$(foreach CPL_FILE, $(CPL_FILES), $(CPL) $(CPL_OPTIONS) $(BIN_DIR)$(CPL_FILE)$(BIN_EXT) $(SRC_DIR)$(CPL_FILE)$(SRC_EXT) $(LNK_FLAGS);)
+	$(foreach CPL_FILE, $(CPL_FILES), $(CPL) $(CPL_OPTIONS) $(BIN_DIR)$(CPL_FILE)$(BIN_EXT) $(SRC_DIR)$(CPL_FILE)$(SRC_EXT) $(CPL_FLAGS);)
 
 $(EXE_FILE): $(BIN_FILES)
-	$(LNK) $(LNK_OPTIONS) $^ $(LNK_FLAGS)
+	$(LNK) $(LNK_OPTIONS) $^ $(CPL_FLAGS)
 
 clean:
 	$(RM) $(RM_OPTIONS) $(BIN_DIR)
 	$(RM) $(RM_OPTIONS) $(EXE_FILE)
+	$(RM) $(RM_OPTIONS) $(OUT1_FILE)
+	$(RM) $(RM_OPTIONS) $(OUT2_FILE)
 
 default: $(EXE_FILE)
+
+purge: clean
+	$(RM) $(RM_OPTIONS) $(BMK_DIR)/*
+	$(RM) $(RM_OPTIONS) $(OUT_DIR)/*
+	$(RM) $(RM_OPTIONS) $(SIM_DIR)/*

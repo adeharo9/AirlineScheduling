@@ -9,6 +9,7 @@ const string Simulation::INSTANCE_SEPARATOR = "_";
 const string Simulation::INSTANCE_EXTENSION = ".air";
 
 const string Simulation::OUTPUT_DIR = "./results/output/";
+const string Simulation::OUTPUT_MANUAL_DIR = "./";
 const string Simulation::OUTPUT_FILENAME = "Output";
 const string Simulation::OUTPUT_SEPARATOR = "_";
 const string Simulation::OUTPUT_EXTENSION = ".txt";
@@ -79,6 +80,7 @@ void Simulation::load(uint index1, uint index2, uint index3)
 
 	switch (mode)
 	{
+		case MANUAL:
 		case MANUAL_1:
 		case MANUAL_2:
 			if(graph.vertexSize() > 0)
@@ -236,7 +238,7 @@ void Simulation::setMode(Mode inMode)
 	{
 		case MANUAL:
 		case MANUAL_1:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
+			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
 			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_EXTENSION;
 			break;
 
@@ -251,7 +253,7 @@ void Simulation::setMode(Mode inMode)
 			break;
 
 		case MANUAL_2:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
+			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
 			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_EXTENSION;
 			break;
 

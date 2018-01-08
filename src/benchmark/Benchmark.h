@@ -26,6 +26,7 @@ private:
 	static const string INSTANCE_EXTENSION;
 
 	static const string OUTPUT_DIR;
+	static const string OUTPUT_MANUAL_DIR;
 	static const string OUTPUT_FILENAME;
 	static const string OUTPUT_SEPARATOR;
 	static const string OUTPUT_EXTENSION;

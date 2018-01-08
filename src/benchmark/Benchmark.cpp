@@ -8,6 +8,7 @@ const string Benchmark::INSTANCE_SEPARATOR = "_";
 const string Benchmark::INSTANCE_EXTENSION = ".air";
 
 const string Benchmark::OUTPUT_DIR = "./results/output/";
+const string Benchmark::OUTPUT_MANUAL_DIR = "./";
 const string Benchmark::OUTPUT_FILENAME = "Output";
 const string Benchmark::OUTPUT_SEPARATOR = "_";
 const string Benchmark::OUTPUT_EXTENSION = ".txt";
@@ -184,7 +185,7 @@ void Benchmark::setMode(Mode inMode)
 	{
 		case MANUAL:
 		case MANUAL_1:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
+			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
 			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_EXTENSION;
 			benchmarkFilePath = BENCHMARK_DIR + BENCHMARK_FILENAME + V1_NAME + BENCHMARK_EXTENSION;
 			break;
@@ -202,7 +203,7 @@ void Benchmark::setMode(Mode inMode)
 			break;
 
 		case MANUAL_2:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
+			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
 			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_EXTENSION;
 			benchmarkFilePath = BENCHMARK_DIR + BENCHMARK_FILENAME + V2_NAME + BENCHMARK_EXTENSION;
 			break;
