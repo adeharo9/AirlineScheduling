@@ -1,11 +1,24 @@
 # OUTPUT FILE
 EXE_FILE = AirlineScheduling$(EXE_EXT)
+
 OUT1_FILE = Output1.txt
 OUT2_FILE = Output2.txt
 
+RES1_FILE = Resultado1.txt
+RES2_FILE = Resultado2.txt
+
+MAKE_FILE = Makefile
+
+ZIP_FILE = G15$(ZIP_EXT)
+
 # DIRECTORIES
+DOC_DIR = ./docs
+DATA_DIR = ./data
+
 HDR_DIR = ./src
 SRC_DIR = ./src
+
+RES_DIR = ./results
 
 BIN_DIR = ./bin
 
@@ -17,6 +30,7 @@ SIM_DIR = ./results/simulations
 CPL = g++
 LNK = g++
 RM = rm
+ZIP = zip
 
 # EXTENSIONS
 HDR_EXT = .h
@@ -25,6 +39,8 @@ SRC_EXT = .cpp
 BIN_EXT = .o
 EXE_EXT = .exe
 
+ZIP_EXT = .zip
+
 # COMPILATION OPTIONS
 CPL_OPTIONS = -c -o
 
@@ -32,6 +48,8 @@ LNK_OPTIONS = -o $@
 CPL_FLAGS = -D_JUDGE_ -DNDEBUG -D_GLIBCXX_DEBUG -O3 -Wall -Wextra -Werror -Wno-sign-compare -Wshadow -std=c++11
 
 RM_OPTIONS = -rf
+
+ZOPTIONS = -r
 
 # FILES
 HDR_FILES_AUX = $(HEADERS:[FILEPATH]%=$(HDR_DIR)%)
@@ -81,7 +99,9 @@ DIRECTORIES = \
 	bin/utils
 
 # COMMANDS
-all: default
+
+.PHONY: default
+default: $(EXE_FILE)
 
 $(DIRECTORIES):
 	mkdir -p $(DIRECTORIES)
@@ -92,15 +112,23 @@ $(BIN_FILES): $(HDR_FILES) $(SRC_FILES) | $(DIRECTORIES)
 $(EXE_FILE): $(BIN_FILES)
 	$(LNK) $(LNK_OPTIONS) $^ $(CPL_FLAGS)
 
+.PHONY: all
+all: default
+
+.PHONY: clean
 clean:
 	$(RM) $(RM_OPTIONS) $(BIN_DIR)
 	$(RM) $(RM_OPTIONS) $(EXE_FILE)
 	$(RM) $(RM_OPTIONS) $(OUT1_FILE)
 	$(RM) $(RM_OPTIONS) $(OUT2_FILE)
+	$(RM) $(RM_OPTIONS) $(ZIP_FILE)
 
-default: $(EXE_FILE)
-
+.PHONY: purge
 purge: clean
 	$(RM) $(RM_OPTIONS) $(BMK_DIR)/*
 	$(RM) $(RM_OPTIONS) $(OUT_DIR)/*
 	$(RM) $(RM_OPTIONS) $(SIM_DIR)/*
+
+.PHONY: $(ZIP)
+$(ZIP):
+	$(ZIP) $(ZOPTIONS) $(ZIP_FILE) $(DATA_DIR) $(DOC_DIR) $(RES_DIR) $(SRC_DIR) $(RES1_FILE) $(RES2_FILE) $(MAKE_FILE)
