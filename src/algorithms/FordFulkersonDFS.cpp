@@ -1,11 +1,6 @@
 #include "FordFulkersonDFS.h"
 
-const string FordFulkersonDFS::ID = "FF_DFS";
-
-int FordFulkersonDFS::fordFulkersonDFS(vector<vector<int> > &residualGraph, uint s, uint t, uint V)
-{
-	return algorithm(residualGraph, s, t, V);
-}
+const string FordFulkersonDFS::ID = "FF-DFS";
 
 /* Returns true if there is a path from source 's' to sink 't' in
   residual graph. Also fills parent to store the path */

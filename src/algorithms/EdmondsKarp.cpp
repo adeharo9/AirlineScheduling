@@ -2,11 +2,6 @@
 
 const string EdmondsKarp::ID = "EK";
 
-int EdmondsKarp::edmondsKarp(vector<vector<int> > &residualGraph, uint s, uint t, uint V)
-{
-	return algorithm(residualGraph, s, t, V);
-}
-
 /* Returns true if there is a path from source 's' to sink 't' in
   residual graph. Also fills parent to store the path */
 bool EdmondsKarp::travelGraph(const vector<vector<int> > &residualGraph, uint s, uint t, vector<uint> &parent, uint V)
