@@ -6,7 +6,9 @@
 
 #include "Simulation.h"
 #include "../algorithms/EdmondsKarp.h"
+#include "../algorithms/FordFulkersonDFS.h"
 #include "../utils/Chrono.h"
+#include "Mode.h"
 
 using namespace std;
 
@@ -45,15 +47,20 @@ private:
 	static const uint FIRST_FILE_PARAMETER_3 = 1;
 	static const uint LAST_FILE_PARAMETER_3 = 10;
 
+	const Mode mode;
+
 	Chrono chrono;
 
 	Simulation simulation;
 
 public:
 
+	explicit Benchmark(Mode inMode);
+
 	void initialize();
 
 	void run();
+	void run(vector<Algorithm*> algorithms);
 
 	void runSingle(uint index1, uint index2, uint index3, Algorithm* algorithm);
 

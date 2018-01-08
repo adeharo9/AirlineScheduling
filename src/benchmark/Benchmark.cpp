@@ -20,6 +20,11 @@ const string Benchmark::BENCHMARK_RESULTS_EXTENSION = ".txt";
 const string Benchmark::BENCHMARK_V1_FILEPATH = BENCHMARK_RESULTS_DIR + BENCHMARK_RESULTS_V1_FILENAME + BENCHMARK_RESULTS_EXTENSION;
 const string Benchmark::BENCHMARK_V2_FILEPATH = BENCHMARK_RESULTS_DIR + BENCHMARK_RESULTS_V2_FILENAME + BENCHMARK_RESULTS_EXTENSION;
 
+Benchmark::Benchmark(Mode inMode) : mode(inMode), simulation(inMode)
+{
+
+}
+
 void Benchmark::initialize()
 {
 	ofstream simulationResults;
@@ -40,15 +45,49 @@ void Benchmark::initialize()
 
 void Benchmark::run()
 {
-	EdmondsKarp edmondsKarp;
+	vector<Algorithm*> algorithms;
 
-	for(uint i = FIRST_FILE_PARAMETER_1; i <= LAST_FILE_PARAMETER_1; ++i)
+	EdmondsKarp edmondsKarp;
+	FordFulkersonDFS fordFulkersonDFS;
+
+	switch (mode)
 	{
-		for (uint j = FIRST_FILE_PARAMETER_2; j <= LAST_FILE_PARAMETER_2; ++j)
+		case VERSION_1_EK:
+		case VERSION_2_EK:
+			algorithms.emplace_back(&edmondsKarp);
+			break;
+
+		case VERSION_1_FF_DFS:
+		case VERSION_2_FF_DFS:
+			algorithms.emplace_back(&fordFulkersonDFS);
+			break;
+
+		case VERSION_1_ALL:
+		case VERSION_2_ALL:
+			algorithms.emplace_back(&edmondsKarp);
+			algorithms.emplace_back(&fordFulkersonDFS);
+			break;
+
+		default:
+			throw invalid_argument("mode");
+	}
+
+	run(algorithms);
+}
+
+void Benchmark::run(vector<Algorithm*> algorithms)
+{
+
+	for(Algorithm* algorithm : algorithms)
+	{
+		for (uint i = FIRST_FILE_PARAMETER_1; i <= LAST_FILE_PARAMETER_1; ++i)
 		{
-			for (uint k = FIRST_FILE_PARAMETER_3; k <= LAST_FILE_PARAMETER_3; ++k)
+			for (uint j = FIRST_FILE_PARAMETER_2; j <= LAST_FILE_PARAMETER_2; ++j)
 			{
-				runSingle(i, j, k, &edmondsKarp);
+				for (uint k = FIRST_FILE_PARAMETER_3; k <= LAST_FILE_PARAMETER_3; ++k)
+				{
+					runSingle(i, j, k, algorithm);
+				}
 			}
 		}
 	}
