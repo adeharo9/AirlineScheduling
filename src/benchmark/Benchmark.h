@@ -49,7 +49,7 @@ private:
 	static const uint FILE_PARAMETER_3_FIRST = 1;
 	static const uint FILE_PARAMETER_3_LAST = 10;
 
-	const Mode mode;
+	Mode mode;
 	string outputFilePath;
 	string simulationsFilePath;
 	string benchmarkFilePath;
@@ -64,13 +64,21 @@ public:
 
 	void initialize();
 
+	void manualRun();
+
 	void run();
 
 	void run(Algorithm* algorithm);
 
 	void runSingle(uint index1, uint index2, uint index3, Algorithm* algorithm);
 
+	void manualRunSingle(Algorithm* algorithm);
+
+	void manualRunSingleMode(Mode inMode);
+
 	void saveResults(uint index1, uint index2, uint index3, ldouble duration);
+
+	void setMode(Mode inMode);
 };
 
 

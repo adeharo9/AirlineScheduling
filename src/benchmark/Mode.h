@@ -3,6 +3,9 @@
 
 enum Mode
 {
+	MANUAL,
+	MANUAL_1,
+	MANUAL_2,
 	VERSION_1_EK,
 	VERSION_1_FF_DFS,
 	VERSION_2_EK,

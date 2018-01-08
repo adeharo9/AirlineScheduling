@@ -18,33 +18,9 @@ const string Simulation::SIMULATIONS_FILENAME = "Resultado";
 const string Simulation::SIMULATIONS_SEPARATOR = "_";
 const string Simulation::SIMULATIONS_EXTENSION = ".txt";
 
-Simulation::Simulation(Mode inMode) : mode(inMode)
+Simulation::Simulation(Mode inMode)
 {
-	switch (inMode)
-	{
-		case VERSION_1_EK:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
-			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_1_FF_DFS:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
-			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_2_EK:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
-			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_2_FF_DFS:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
-			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		default:
-			throw invalid_argument("mode");
-	}
+	this -> setMode(inMode);
 }
 
 void Simulation::input()
@@ -56,11 +32,11 @@ void Simulation::input()
 
 	maxFlights = 0;
 
-	while (instance >> originCity)	// operacions descrites a la pagina 390 del llibre
+	while (inputFile >> originCity)	// operacions descrites a la pagina 390 del llibre
 	{
-		instance >> destinationCity;
-		instance >> departureTime;
-		instance >> arrivalTime;
+		inputFile >> destinationCity;
+		inputFile >> departureTime;
+		inputFile >> arrivalTime;
 
 		Vertex origin(originCity, departureTime);
 		Vertex destination(destinationCity, arrivalTime);
@@ -70,19 +46,55 @@ void Simulation::input()
 		++maxFlights;
 	}
 
-	instance.close();
+	inputFile.close();
+}
 
+void Simulation::manualInput()
+{
+	uint originCity;
+	uint destinationCity;
+	uint departureTime;
+	uint arrivalTime;
+
+	maxFlights = 0;
+
+	while (cin >> originCity)	// operacions descrites a la pagina 390 del llibre
+	{
+		cin >> destinationCity;
+		cin >> departureTime;
+		cin >> arrivalTime;
+
+		Vertex origin(originCity, departureTime);
+		Vertex destination(destinationCity, arrivalTime);
+
+		graph.addEdge(origin, destination);
+
+		++maxFlights;
+	}
 }
 
 
 void Simulation::load(uint index1, uint index2, uint index3)
 {
-	instanceName = INSTANCE_NAME + INSTANCE_SEPARATOR + to_string(index1) + INSTANCE_SEPARATOR + to_string(index2) + INSTANCE_SEPARATOR + to_string(index3) + INSTANCE_EXTENSION;
-	string filePath = DATA_DIR + instanceName;
 
-	this -> instance.open(filePath, fstream::in);
+	switch (mode)
+	{
+		case MANUAL_1:
+		case MANUAL_2:
+			if(graph.vertexSize() > 0)
+			{
+				this -> manualInput();
+			}
+			break;
 
-	this -> input();
+		default:
+			instanceName = INSTANCE_NAME + INSTANCE_SEPARATOR + to_string(index1) + INSTANCE_SEPARATOR + to_string(index2) + INSTANCE_SEPARATOR + to_string(index3) + INSTANCE_EXTENSION;
+			string filePath = DATA_DIR + instanceName;
+
+			this -> inputFile.open(filePath, fstream::in);
+			this -> input();
+			break;
+	}
 }
 
 void Simulation::setAlgorithm(Algorithm* inAlgorithm)
@@ -94,11 +106,14 @@ void Simulation::initialize()
 {
 	switch (mode)
 	{
+		case MANUAL:
+		case MANUAL_1:
 		case VERSION_1_EK:
 		case VERSION_1_FF_DFS:
 			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
+		case MANUAL_2:
 		case VERSION_2_EK:
 		case VERSION_2_FF_DFS:
 			version2();				// Afegir arestes si es pot arribar d'un vol a un altre
@@ -116,13 +131,20 @@ void Simulation::initialize()
 
 void Simulation::run()
 {
-	maxFlow = dicotomic(0, maxFlights);
+	maxFlow = dicotomic(0, maxFlights, true);
 }
 
-int Simulation::dicotomic(uint low, uint high)
+int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
 {
 	if (high == low)
 	{
+		if(lastIterationCalc)
+		{
+			graph.updateMaxFlights(low);
+			this -> initialize();
+			algorithm -> algorithm(adjacenceMatrixGraph, adjacenceMatrixResidualGraph, 0, 1, graph.vertexSize());
+		}
+
 		cout << "FOUND MIN: " << low << endl;	// Print solution here
 
 		return low;
@@ -135,36 +157,117 @@ int Simulation::dicotomic(uint low, uint high)
 		this -> initialize();
 
 		int neededFlow = k + maxFlights;
-		int flow = algorithm -> algorithm(adjacenceMatrixGraph, 0, 1, graph.vertexSize());
+
+		adjacenceMatrixResidualGraph = imatrix(graph.vertexSize(), vector<int>(graph.vertexSize()));
+
+		int flow = algorithm -> algorithm(adjacenceMatrixGraph, adjacenceMatrixResidualGraph, 0, 1, graph.vertexSize());
 
 		if (flow < neededFlow)
 		{
-			return dicotomic(k + 1, high);
+			return dicotomic(k + 1, high, true);
 		}
 		else
 		{
-			return dicotomic(low, k);
+			return dicotomic(low, k, false);
 		}
+	}
+}
+
+void Simulation::processResults()
+{
+	int k = adjacenceMatrixGraph[3][1]; //un lloc on es troba k
+	int nvols = (adjacenceMatrixGraph.size() - 4) / 2;
+	int flow = 0;
+
+	if (adjacenceMatrixResidualGraph[3][1] == 0)
+	{
+		flow = k;
+	}
+
+	for (int i = 4; i < adjacenceMatrixGraph.size(); i += 2)
+	{
+		if (adjacenceMatrixResidualGraph[i][1] == 0)
+		{
+			++flow;
+		}
+	}
+
+	if (flow == nvols + k)
+	{
+		printSol(adjacenceMatrixResidualGraph, adjacenceMatrixGraph);
+	}
+	else
+	{
+		cout << "No s'ha trobat cap solució." << endl;
+		outputFile << "No s'ha trobat cap solució." << endl;
 	}
 }
 
 void Simulation::end()
 {
-	results.open(simulationssFilePath, fstream::out | fstream::app);
+	outputFile.open(outputFilePath, fstream::out | fstream::app);
 
-	if(not results.is_open())
+	this -> processResults();
+
+	outputFile.close();
+
+	simulationsFile.open(simulationsFilePath, fstream::out | fstream::app);
+
+	if(not simulationsFile.is_open())
 	{
-		results.open(simulationssFilePath, fstream::out | fstream::trunc);
+		simulationsFile.open(simulationsFilePath, fstream::out | fstream::trunc);
 	}
 
-	results << instanceName << " " << maxFlow << endl;
+	simulationsFile << instanceName << " " << maxFlow << endl;
 
-	results.close();
+	simulationsFile.close();
 }
 
 void Simulation::reset()
 {
 	graph = Graph();
+}
+
+void Simulation::setMode(Mode inMode)
+{
+	this -> mode = inMode;
+
+	switch (inMode)
+	{
+		case MANUAL:
+		case MANUAL_1:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_1_EK:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_1_FF_DFS:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		case MANUAL_2:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_2_EK:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_2_FF_DFS:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
+			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		default:
+			throw invalid_argument("mode");
+	}
 }
 
 /*
@@ -280,4 +383,43 @@ void Simulation::transformMax()
 bool Simulation::reachable(uint destination, uint origin)
 {
 	return (origin + 1 != destination) and graph.getVertex(destination).getCity() == graph.getVertex(origin).getCity() and (int(graph.getVertex(origin).getTime()) - int(graph.getVertex(destination).getTime())) >= MIN_TRANSITION_TIME;
+}
+
+void Simulation::printSol(const vector<vector<int> >& residualGraph, const vector<vector<int> >& initialGraph)
+{
+	cout << maxFlow << endl;
+	outputFile << maxFlow << endl;
+
+	//si s'ha seguit una aresta amb capacitat 1, al graf final te capacitat 0
+	int p = 1;
+
+	for(int i = 4; i < residualGraph.size(); i += 2)	//origen
+	{
+		if (residualGraph[2][i] == 0)	//si el camí comença per el vertex i
+		{
+			int j = i;	//index segons l'exemple de l'enunciat
+
+			while (residualGraph[j + 1][3] != 0)	// si NO es l'ultim vol que fa el pilot
+			{
+				cout << (j - 4) / 2 + 1 << " ";
+				outputFile << (j - 4) / 2 + 1 << " ";
+
+				bool found = false;
+
+				for (int k = 4; k < residualGraph.size() and not found; k += 2)
+				{
+					if (residualGraph[j + 1][k] == 0 and initialGraph[j + 1][k] == 1)	//si el vol ha seguit per aquest camí
+					{
+						j = k;
+						found = true;
+					}
+				}
+			}
+			cout << (j - 4) / 2 + 1 << endl;
+			outputFile << (j - 4) / 2 + 1 << endl;
+
+			++p;
+		}
+	}
+	cout << endl;
 }

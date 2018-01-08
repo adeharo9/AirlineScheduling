@@ -45,17 +45,19 @@ private:
 
 	Mode mode;
 	string outputFilePath;
-	string simulationssFilePath;
+	string simulationsFilePath;
 
 	string instanceName;
 
-	ifstream instance;
-	ofstream results;
+	ifstream inputFile;
+	ofstream outputFile;
+	ofstream simulationsFile;
 
 	Graph graph;
 	Algorithm* algorithm;
 
 	imatrix adjacenceMatrixGraph;
+	imatrix adjacenceMatrixResidualGraph;
 
 	int maxFlow;
 	uint maxFlights;
@@ -68,6 +70,8 @@ public:
 
 	/* GENERAL SIMULATION METHODS */
 
+	void manualInput();
+
 	void load(uint index1, uint index2, uint index3);
 
 	void setAlgorithm(Algorithm* inAlgorithm);
@@ -76,9 +80,13 @@ public:
 
 	void run();
 
+	void processResults();
+
 	void end();
 
 	void reset();
+
+	void setMode(Mode inMode);
 
 private:
 
@@ -96,9 +104,13 @@ private:
 
 	void transformMax();
 
-	int dicotomic(uint low, uint high);
+	int dicotomic(uint low, uint high, bool lastIterationCalc);
 
 	bool reachable(uint destination, uint origin);
+
+	/* OUTPUT METHODS */
+
+	void printSol(const vector<vector<int> > &residualGraph, const vector<vector<int> > &initialGraph);
 };
 
 
