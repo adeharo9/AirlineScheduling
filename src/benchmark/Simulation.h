@@ -2,7 +2,9 @@
 #define AIRLINESCHEDULING_SIMULATION_H
 
 
+#include <iostream>
 #include <fstream>
+#include <string>
 
 #include "../structures/Graph.h"
 #include "../algorithms/Algorithm.h"

@@ -1,6 +1,9 @@
 #ifndef AIRLINESCHEDULING_BENCHMARK_H
 #define AIRLINESCHEDULING_BENCHMARK_H
 
+
+#include <string>
+
 #include "Simulation.h"
 #include "../algorithms/EdmondsKarp.h"
 #include "../utils/Chrono.h"

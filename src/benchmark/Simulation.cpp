@@ -1,5 +1,4 @@
 #include "Simulation.h"
-#include <iostream>
 
 const string Simulation::DATA_DIR = "./data/";
 const string Simulation::INSTANCE_NAME = "instance";
