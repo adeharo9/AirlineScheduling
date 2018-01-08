@@ -8,6 +8,7 @@
 
 #include "../structures/Graph.h"
 #include "../algorithms/Algorithm.h"
+#include "Mode.h"
 
 using namespace std;
 
@@ -34,6 +35,8 @@ private:
 
 	static const int MIN_TRANSITION_TIME = 15;
 
+	Mode mode;
+
 	string instanceName;
 
 	ifstream instance;
@@ -51,7 +54,7 @@ public:
 
 	/* CONSTRUCTORS */
 
-	Simulation() = default;
+	explicit Simulation(Mode inMode);
 
 	/* GENERAL SIMULATION METHODS */
 

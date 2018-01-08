@@ -14,6 +14,11 @@ const string Simulation::RESULTS_EXTENSION = ".txt";
 const string Simulation::RESULTS_V1_FILEPATH = RESULTS_DIR + RESULTS_V1_FILENAME + RESULTS_EXTENSION;
 const string Simulation::RESULTS_V2_FILEPATH = RESULTS_DIR + RESULTS_V2_FILENAME + RESULTS_EXTENSION;
 
+Simulation::Simulation(Mode inMode) : mode(inMode)
+{
+
+}
+
 void Simulation::input()
 {
 	uint originCity;
@@ -60,7 +65,24 @@ void Simulation::setAlgorithm(Algorithm* inAlgorithm)
 
 void Simulation::initialize()
 {
-	version2();				// Afegir arestes si es pot arribar d'un vol a un altre
+	switch (mode)
+	{
+		case VERSION_1_EK:
+		case VERSION_1_FF_DFS:
+		case VERSION_1_ALL:
+			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
+			break;
+
+		case VERSION_2_EK:
+		case VERSION_2_FF_DFS:
+		case VERSION_2_ALL:
+			version2();				// Afegir arestes si es pot arribar d'un vol a un altre
+			break;
+
+		default:
+			throw invalid_argument("mode");
+	}
+
 	deleteLowerBound();		// Eliminar els lower bound
 	deleteDemand();			// Eliminar les demandes
     transformMax();
