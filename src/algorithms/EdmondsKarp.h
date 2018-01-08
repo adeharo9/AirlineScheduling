@@ -14,6 +14,7 @@ typedef unsigned int uint;
 class EdmondsKarp : public FordFulkerson
 {
 public:
+	static const string ID;
 
 	/* ALIASES OF BASE CLASS METHODS */
 
@@ -22,10 +23,6 @@ public:
 	/* GRAPH TRAVELING METHODS */
 
 	bool travelGraph(const vector<vector<int> > &residualGraph, uint s, uint t, vector<uint> &parent, uint V) override;
-
-	/* ALGORITHM DESCRIPTION */
-
-	string algorithmName() override;
 };
 
 #endif //AIRLINESCHEDULING_EDMONDSKARP_H

@@ -1,5 +1,7 @@
 #include "FordFulkersonDFS.h"
 
+const string FordFulkersonDFS::ID = "FF_DFS";
+
 int FordFulkersonDFS::fordFulkersonDFS(vector<vector<int> > &residualGraph, uint s, uint t, uint V)
 {
 	return algorithm(residualGraph, s, t, V);
@@ -33,9 +35,4 @@ bool FordFulkersonDFS::travelGraph(const vector<vector<int> > &residualGraph, ui
 	}
 
 	return visited[t];	// If we reached sink in BFS starting from source, then return true
-}
-
-string FordFulkersonDFS::algorithmName()
-{
-	return "Ford Fulkerson with DFS";
 }

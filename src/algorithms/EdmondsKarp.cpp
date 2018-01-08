@@ -1,5 +1,7 @@
 #include "EdmondsKarp.h"
 
+const string EdmondsKarp::ID = "EK";
+
 int EdmondsKarp::edmondsKarp(vector<vector<int> > &residualGraph, uint s, uint t, uint V)
 {
 	return algorithm(residualGraph, s, t, V);
@@ -33,9 +35,4 @@ bool EdmondsKarp::travelGraph(const vector<vector<int> > &residualGraph, uint s,
 	}
 
 	return visited[t];	// If we reached sink in BFS starting from source, then return true
-}
-
-string EdmondsKarp::algorithmName()
-{
-	return "Edmonds Karp";
 }

@@ -12,8 +12,6 @@ class Algorithm
 public:
 
 	virtual int algorithm(vector<vector<int> > &graph, uint s, uint t, uint V) = 0;
-
-	virtual string algorithmName() = 0;
 };
 
 
