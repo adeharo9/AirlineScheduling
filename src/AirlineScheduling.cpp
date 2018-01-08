@@ -3,9 +3,9 @@
 int main ()
 {
 	Benchmark benchmark;
-	EdmondsKarp edmondsKarp;
+	//EdmondsKarp edmondsKarp;
 
 	benchmark.initialize();
-	//benchmark.run();
-	benchmark.runSingle(100, 10, 10, &edmondsKarp);
+	benchmark.run();
+	//benchmark.runSingle(100, 10, 10, &edmondsKarp);
 }
