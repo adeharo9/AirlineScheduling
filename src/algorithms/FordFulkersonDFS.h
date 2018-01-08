@@ -20,6 +20,10 @@ class FordFulkersonDFS : public FordFulkerson
 	/* GRAPH TRAVELING METHODS */
 
 	bool travelGraph(const vector<vector<int> > &residualGraph, uint s, uint t, vector<uint> &parent, uint V) override;
+
+	/* ALGORITHM DESCRIPTION */
+
+	string algorithmName() override;
 };
 
 

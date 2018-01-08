@@ -34,3 +34,8 @@ bool FordFulkersonDFS::travelGraph(const vector<vector<int> > &residualGraph, ui
 
 	return visited[t];	// If we reached sink in BFS starting from source, then return true
 }
+
+string FordFulkersonDFS::algorithmName()
+{
+	return "Ford Fulkerson with DFS";
+}

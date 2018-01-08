@@ -27,6 +27,10 @@ public:
 
 	int algorithm(vector<vector<int> > &graph, uint s, uint t, uint V) override;
 
+	/* ALGORITHM DESCRIPTION */
+
+	string algorithmName() override = 0;
+
 	/* OUTPUT METHODS */
 
 	void print_sol(const vector<vector<int> > &g, const vector<vector<int> > &ini);
