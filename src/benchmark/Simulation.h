@@ -5,9 +5,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <queue>
 
 #include "../structures/Graph.h"
 #include "../algorithms/Algorithm.h"
+#include "../algorithms/EdmondsKarp.h"
+#include "../algorithms/FordFulkersonDFS.h"
 #include "Mode.h"
 
 using namespace std;
@@ -20,22 +23,29 @@ private:
 
 	/* ATTRIBUTES */
 
+	static const string V1_NAME;
+	static const string V2_NAME;
+
 	static const string DATA_DIR;
 	static const string INSTANCE_NAME;
 	static const string INSTANCE_SEPARATOR;
 	static const string INSTANCE_EXTENSION;
 
-	static const string RESULTS_DIR;
-	static const string RESULTS_V1_FILENAME;
-	static const string RESULTS_V2_FILENAME;
-	static const string RESULTS_EXTENSION;
+	static const string OUTPUT_DIR;
+	static const string OUTPUT_FILENAME;
+	static const string OUTPUT_SEPARATOR;
+	static const string OUTPUT_EXTENSION;
 
-	static const string RESULTS_V1_FILEPATH;
-	static const string RESULTS_V2_FILEPATH;
+	static const string SIMULATIONS_DIR;
+	static const string SIMULATIONS_FILENAME;
+	static const string SIMULATIONS_SEPARATOR;
+	static const string SIMULATIONS_EXTENSION;
 
 	static const int MIN_TRANSITION_TIME = 15;
 
 	Mode mode;
+	string outputFilePath;
+	string simulationssFilePath;
 
 	string instanceName;
 

@@ -18,36 +18,41 @@ private:
 
 	/* ATTRIBUTES */
 
+	static const string V1_NAME;
+	static const string V2_NAME;
+
 	static const string INSTANCE_NAME;
 	static const string INSTANCE_SEPARATOR;
 	static const string INSTANCE_EXTENSION;
 
-	static const string RESULTS_DIR;
-	static const string RESULTS_V1_FILENAME;
-	static const string RESULTS_V2_FILENAME;
-	static const string RESULTS_EXTENSION;
+	static const string OUTPUT_DIR;
+	static const string OUTPUT_FILENAME;
+	static const string OUTPUT_SEPARATOR;
+	static const string OUTPUT_EXTENSION;
 
-	static const string RESULTS_V1_FILEPATH;
-	static const string RESULTS_V2_FILEPATH;
+	static const string SIMULATIONS_DIR;
+	static const string SIMULATIONS_FILENAME;
+	static const string SIMULATIONS_SEPARATOR;
+	static const string SIMULATIONS_EXTENSION;
 
-	static const string BENCHMARK_RESULTS_DIR;
-	static const string BENCHMARK_RESULTS_V1_FILENAME;
-	static const string BENCHMARK_RESULTS_V2_FILENAME;
-	static const string BENCHMARK_RESULTS_EXTENSION;
+	static const string BENCHMARK_DIR;
+	static const string BENCHMARK_FILENAME;
+	static const string BENCHMARK_SEPARATOR;
+	static const string BENCHMARK_EXTENSION;
 
-	static const string BENCHMARK_V1_FILEPATH;
-	static const string BENCHMARK_V2_FILEPATH;
+	static const uint FILE_PARAMETER_1_FIRST = 100;
+	static const uint FILE_PARAMETER_1_LAST = 100;
 
-	static const uint FIRST_FILE_PARAMETER_1 = 100;
-	static const uint LAST_FILE_PARAMETER_1 = 100;
+	static const uint FILE_PARAMETER_2_FIRST = 2;
+	static const uint FILE_PARAMETER_2_LAST = 30;
 
-	static const uint FIRST_FILE_PARAMETER_2 = 2;
-	static const uint LAST_FILE_PARAMETER_2 = 30;
-
-	static const uint FIRST_FILE_PARAMETER_3 = 1;
-	static const uint LAST_FILE_PARAMETER_3 = 10;
+	static const uint FILE_PARAMETER_3_FIRST = 1;
+	static const uint FILE_PARAMETER_3_LAST = 10;
 
 	const Mode mode;
+	string outputFilePath;
+	string simulationsFilePath;
+	string benchmarkFilePath;
 
 	Chrono chrono;
 
@@ -60,7 +65,8 @@ public:
 	void initialize();
 
 	void run();
-	void run(vector<Algorithm*> algorithms);
+
+	void run(Algorithm* algorithm);
 
 	void runSingle(uint index1, uint index2, uint index3, Algorithm* algorithm);
 

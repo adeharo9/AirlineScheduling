@@ -1,22 +1,50 @@
-#include <queue>
 #include "Simulation.h"
+
+const string Simulation::V1_NAME = "1";
+const string Simulation::V2_NAME = "2";
 
 const string Simulation::DATA_DIR = "./data/";
 const string Simulation::INSTANCE_NAME = "instance";
 const string Simulation::INSTANCE_SEPARATOR = "_";
 const string Simulation::INSTANCE_EXTENSION = ".air";
 
-const string Simulation::RESULTS_DIR = "./results/generated/simulations/";
-const string Simulation::RESULTS_V1_FILENAME = "Resultado1";
-const string Simulation::RESULTS_V2_FILENAME = "Resultado2";
-const string Simulation::RESULTS_EXTENSION = ".txt";
+const string Simulation::OUTPUT_DIR = "./results/output/";
+const string Simulation::OUTPUT_FILENAME = "Output";
+const string Simulation::OUTPUT_SEPARATOR = "_";
+const string Simulation::OUTPUT_EXTENSION = ".txt";
 
-const string Simulation::RESULTS_V1_FILEPATH = RESULTS_DIR + RESULTS_V1_FILENAME + RESULTS_EXTENSION;
-const string Simulation::RESULTS_V2_FILEPATH = RESULTS_DIR + RESULTS_V2_FILENAME + RESULTS_EXTENSION;
+const string Simulation::SIMULATIONS_DIR = "./results/simulations/";
+const string Simulation::SIMULATIONS_FILENAME = "Resultado";
+const string Simulation::SIMULATIONS_SEPARATOR = "_";
+const string Simulation::SIMULATIONS_EXTENSION = ".txt";
 
 Simulation::Simulation(Mode inMode) : mode(inMode)
 {
+	switch (inMode)
+	{
+		case VERSION_1_EK:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
+			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
+			break;
 
+		case VERSION_1_FF_DFS:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
+			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_2_EK:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
+			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		case VERSION_2_FF_DFS:
+			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
+			simulationssFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+			break;
+
+		default:
+			throw invalid_argument("mode");
+	}
 }
 
 void Simulation::input()
@@ -53,7 +81,6 @@ void Simulation::load(uint index1, uint index2, uint index3)
 	string filePath = DATA_DIR + instanceName;
 
 	this -> instance.open(filePath, fstream::in);
-	//this -> instance.open("../data/sample.air", fstream::in);
 
 	this -> input();
 }
@@ -69,13 +96,11 @@ void Simulation::initialize()
 	{
 		case VERSION_1_EK:
 		case VERSION_1_FF_DFS:
-		case VERSION_1_ALL:
 			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
 		case VERSION_2_EK:
 		case VERSION_2_FF_DFS:
-		case VERSION_2_ALL:
 			version2();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
@@ -125,11 +150,11 @@ int Simulation::dicotomic(uint low, uint high)
 
 void Simulation::end()
 {
-	results.open(RESULTS_V1_FILEPATH, fstream::out | fstream::app);
+	results.open(simulationssFilePath, fstream::out | fstream::app);
 
 	if(not results.is_open())
 	{
-		results.open(RESULTS_V1_FILEPATH, fstream::out | fstream::trunc);
+		results.open(simulationssFilePath, fstream::out | fstream::trunc);
 	}
 
 	results << instanceName << " " << maxFlow << endl;
