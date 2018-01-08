@@ -25,7 +25,7 @@ public:
 
 	/* BASE ALGORITHM */
 
-	int algorithm(vector<vector<int> > &graph, uint s, uint t, uint V) override;
+	int algorithm(vector<vector<int> > &graph, vector<vector<int> > &residualGraph, uint s, uint t, uint V) override;
 
 	/* OUTPUT METHODS */
 

@@ -1,36 +1,24 @@
 #include "FordFulkerson.h"
 
 // Returns the maximum flow from s to t in the given graph
-int FordFulkerson::algorithm(vector<vector<int> > &graph, uint s, uint t, uint V)
+int FordFulkerson::algorithm(vector<vector<int> > &graph, vector<vector<int> > &residualGraph, uint s, uint t, uint V)
 {
 	uint u, v;
 
 	// Create a residual graph and fill the residual graph with
 	// given capacities in the original graph as residual capacities
 	// in residual graph
-	vector<vector<int> > residualGraph(V, vector<int>(V));
+	//vector<vector<int> > residualGraph(V, vector<int>(V));
 
 	// Residual graph where residualGraph[i][j] indicates
 	// residual capacity of edge from i to j (if there
 	// is an edge. If residualGraph[i][j] is 0, then there is not)
 	for (u = 0; u < V; ++u)
 	{
-		/*if (u == 4)
-		{
-			cout << "----------------------" << endl;
-		}*/
-
 		for (v = 0; v < V; ++v)
 		{
-			/*if (v == 4)
-			{
-				cout << '|';
-			}*/
-
 			residualGraph[u][v] = graph[u][v];
-			//cout << graph[u][v] << " ";
 		}
-		//cout << endl;
 	}
 
 	vector<uint> parent(V);  // This array is filled by BFS and to store path
@@ -75,8 +63,8 @@ int FordFulkerson::algorithm(vector<vector<int> > &graph, uint s, uint t, uint V
 	}*/
 
 	//si el resultat es solució, el flow al T real ha de ser k + nombre de vols
-    /*
-	int k=graph[3][1]; //un lloc on es troba k
+
+	/*int k=graph[3][1]; //un lloc on es troba k
 	int nvols=(graph.size()-4)/2;
 	int flow=0;
 	if (residualGraph[3][1]==0)flow=k;
@@ -84,8 +72,8 @@ int FordFulkerson::algorithm(vector<vector<int> > &graph, uint s, uint t, uint V
 		if(residualGraph[i][1]==0)flow++;
 	}
 	if (flow==nvols+k) print_sol(residualGraph,graph);
-	else cout<<"No s'ha trobat cap solució"<<endl;
-     */
+	else cout<<"No s'ha trobat cap solució"<<endl;*/
+
 	return max_flow;
 }
 

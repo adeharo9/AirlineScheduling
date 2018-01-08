@@ -11,7 +11,7 @@ class Algorithm
 {
 public:
 
-	virtual int algorithm(vector<vector<int> > &graph, uint s, uint t, uint V) = 0;
+	virtual int algorithm(vector<vector<int> > &graph, vector<vector<int> > &residualGraph, uint s, uint t, uint V) = 0;
 };
 
 
