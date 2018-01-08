@@ -1,3 +1,4 @@
+#include <queue>
 #include "Simulation.h"
 
 const string Simulation::DATA_DIR = "./data/";
@@ -5,7 +6,7 @@ const string Simulation::INSTANCE_NAME = "instance";
 const string Simulation::INSTANCE_SEPARATOR = "_";
 const string Simulation::INSTANCE_EXTENSION = ".air";
 
-const string Simulation::RESULTS_DIR = "./results/simulations/";
+const string Simulation::RESULTS_DIR = "./results/generated/simulations/";
 const string Simulation::RESULTS_V1_FILENAME = "Resultado1";
 const string Simulation::RESULTS_V2_FILENAME = "Resultado2";
 const string Simulation::RESULTS_EXTENSION = ".txt";
@@ -47,6 +48,7 @@ void Simulation::load(uint index1, uint index2, uint index3)
 	string filePath = DATA_DIR + instanceName;
 
 	this -> instance.open(filePath, fstream::in);
+	//this -> instance.open("../data/sample.air", fstream::in);
 
 	this -> input();
 }
@@ -58,7 +60,7 @@ void Simulation::setAlgorithm(Algorithm* inAlgorithm)
 
 void Simulation::initialize()
 {
-	version1();				// Afegir arestes si es pot arribar d'un vol a un altre
+	version2();				// Afegir arestes si es pot arribar d'un vol a un altre
 	deleteLowerBound();		// Eliminar els lower bound
 	deleteDemand();			// Eliminar les demandes
     transformMax();
@@ -125,16 +127,52 @@ void Simulation::reset()
 */
 void Simulation::version1()
 {
-	for (uint i = Graph::firstDestinationVertex; i < graph.vertexSize(); i += 2)	// i es desti
+	for (uint destination = Graph::firstDestinationVertex; destination < graph.vertexSize(); destination += 2)	// destination es desti
 	{
-		for (uint j = Graph::firstOriginVertex; j < graph.vertexSize(); j += 2)	// j es origen
+		for (uint origin = Graph::firstOriginVertex; origin < graph.vertexSize(); origin += 2)	// origin es origen
 		{
-			if (j != i - 1)	// per evitar fer calculs sobre el mateix vol
+			if (reachable(destination, origin))
 			{
-				if (graph.getVertex(i).getCity() == graph.getVertex(j).getCity() and int(graph.getVertex(j).getTime()) - int(graph.getVertex(i).getTime()) >= MIN_TRANSITION_TIME)
+				graph.addNeighbour(destination, Edge(destination, origin, 1));	// aresta del desti destination al origen origin amb pes 1
+			}
+		}
+	}
+}
+
+void Simulation::version2()
+{
+	for (uint destination = Graph::firstDestinationVertex; destination < graph.vertexSize(); destination += 2)	// destination es desti
+	{
+		queue<uint> visiting;
+		vector<bool> visited(graph.vertexSize(), false);
+
+		for (uint origin = Graph::firstOriginVertex; origin < graph.vertexSize(); origin += 2)	// origin es origen
+		{
+			if (reachable(destination, origin))	// per evitar fer calculs sobre el mateix vol
+			{
+				visited[origin] = true;
+				uint nextDestination = graph.getEdge(origin, 0).getDestination();
+				visiting.push(nextDestination);
+
+				graph.addNeighbour(destination, Edge(destination, origin, 1));	// aresta del desti destination al origen origin amb pes 1
+			}
+		}
+
+		while (not visiting.empty())
+		{
+			uint current = visiting.front();
+			visiting.pop();
+
+			for (uint origin = Graph::firstOriginVertex; origin < graph.vertexSize(); origin += 2)	// origin es origen
+			{
+				if (not visited[origin] and reachable(current, origin))
 				{
-					// aresta del desti i al origen j amb pes 1
-					graph.addNeighbour(i, Edge(i, j, 1));
+					visited[origin] = true;
+
+					uint nextDestination = graph.getEdge(origin, 0).getDestination();
+					visiting.push(nextDestination);
+
+					graph.addNeighbour(destination, Edge(destination, origin, 1));	// aresta del desti destination al origen origin amb pes 1
 				}
 			}
 		}
@@ -190,4 +228,9 @@ void Simulation::transformMax()
 			adjacenceMatrixGraph[i][graph.getEdge(i, j).getDestination()] = graph.getEdge(i, j).getCapacity();
 		}
 	}
+}
+
+bool Simulation::reachable(uint destination, uint origin)
+{
+	return (origin + 1 != destination) and graph.getVertex(destination).getCity() == graph.getVertex(origin).getCity() and (int(graph.getVertex(origin).getTime()) - int(graph.getVertex(destination).getTime())) >= MIN_TRANSITION_TIME;
 }

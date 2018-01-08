@@ -75,6 +75,8 @@ private:
 
 	void version1();
 
+	void version2();
+
 	void deleteLowerBound();
 
 	void deleteDemand();
@@ -82,6 +84,8 @@ private:
 	void transformMax();
 
 	int dicotomic(uint low, uint high);
+
+	bool reachable(uint destination, uint origin);
 };
 
 

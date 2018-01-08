@@ -4,7 +4,7 @@ const string Benchmark::INSTANCE_NAME = "instance";
 const string Benchmark::INSTANCE_SEPARATOR = "_";
 const string Benchmark::INSTANCE_EXTENSION = ".air";
 
-const string Benchmark::RESULTS_DIR = "./results/simulations/";
+const string Benchmark::RESULTS_DIR = "./results/generated/simulations/";
 const string Benchmark::RESULTS_V1_FILENAME = "Resultado1";
 const string Benchmark::RESULTS_V2_FILENAME = "Resultado2";
 const string Benchmark::RESULTS_EXTENSION = ".txt";
@@ -12,7 +12,7 @@ const string Benchmark::RESULTS_EXTENSION = ".txt";
 const string Benchmark::RESULTS_V1_FILEPATH = RESULTS_DIR + RESULTS_V1_FILENAME + RESULTS_EXTENSION;
 const string Benchmark::RESULTS_V2_FILEPATH = RESULTS_DIR + RESULTS_V2_FILENAME + RESULTS_EXTENSION;
 
-const string Benchmark::BENCHMARK_RESULTS_DIR = "./results/benchmark/";
+const string Benchmark::BENCHMARK_RESULTS_DIR = "./results/generated/benchmark/";
 const string Benchmark::BENCHMARK_RESULTS_V1_FILENAME = "Benchmark1";
 const string Benchmark::BENCHMARK_RESULTS_V2_FILENAME = "Benchmark2";
 const string Benchmark::BENCHMARK_RESULTS_EXTENSION = ".txt";
