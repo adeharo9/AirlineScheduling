@@ -79,7 +79,7 @@ private:
 
 	void transformMax();
 
-	int dicotomic(uint low,uint high);
+	int dicotomic(uint low, uint high);
 };
 
 

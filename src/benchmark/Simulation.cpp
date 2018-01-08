@@ -1,11 +1,12 @@
 #include "Simulation.h"
 #include <iostream>
+
 const string Simulation::DATA_DIR = "./data/";
 const string Simulation::INSTANCE_NAME = "instance";
 const string Simulation::INSTANCE_SEPARATOR = "_";
 const string Simulation::INSTANCE_EXTENSION = ".air";
 
-const string Simulation::RESULTS_DIR = "./results/";
+const string Simulation::RESULTS_DIR = "./results/simulations/";
 const string Simulation::RESULTS_V1_FILENAME = "Resultado1";
 const string Simulation::RESULTS_V2_FILENAME = "Resultado2";
 const string Simulation::RESULTS_EXTENSION = ".txt";
@@ -67,26 +68,36 @@ void Simulation::initialize()
 
 void Simulation::run()
 {
-	maxFlow=dicotomic(0,maxFlights);
+	maxFlow = dicotomic(0, maxFlights);
 }
 
-int Simulation::dicotomic(uint low, uint high) {
-	if (high==low){
-		cout<<"FOUND MIN : "<<low<<endl;
-        //print solution here
+int Simulation::dicotomic(uint low, uint high)
+{
+	if (high == low)
+	{
+		cout << "FOUND MIN: " << low << endl;	// Print solution here
 
-       // algorithm -> print_sol(adjacenceMatrixGraph,adjacenceMatrixGraph);
-		return low;}
-	int k=(high+low)/2;
-	graph.updateMaxFlights(k);
-    initialize();
+		return low;
 
-	int neededFlow=k+maxFlights;
-	int flow=algorithm -> algorithm(adjacenceMatrixGraph, 0, 1, graph.vertexSize());
-	if (flow<neededFlow)
-		return dicotomic(k+1,high);
+	}
 	else
-		return dicotomic(low,k);
+	{
+		uint k = (high + low) / 2;
+		graph.updateMaxFlights(k);
+		this -> initialize();
+
+		int neededFlow = k + maxFlights;
+		int flow = algorithm -> algorithm(adjacenceMatrixGraph, 0, 1, graph.vertexSize());
+
+		if (flow < neededFlow)
+		{
+			return dicotomic(k + 1, high);
+		}
+		else
+		{
+			return dicotomic(low, k);
+		}
+	}
 }
 
 void Simulation::end()
@@ -109,7 +120,7 @@ void Simulation::reset()
 }
 
 /*
-	afegeix arestes segibs el criteri sobre quines transicions son posibles de la versió 1
+	afegeix arestes seguint el criteri sobre quines transicions son posibles de la versió 1
 	per tot node destí comprobem per tot node origen si es possible fer transició
 	cost n * n on n son els vols
 */
