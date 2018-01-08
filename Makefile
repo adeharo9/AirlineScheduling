@@ -8,8 +8,8 @@ SRC_DIR = ./src
 BIN_DIR = ./bin
 
 # EXECUTABLES
-CPL = g++-4.8
-LNK = g++-4.8
+CPL = g++
+LNK = g++
 RM = rm
 
 # EXTENSIONS
