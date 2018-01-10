@@ -189,31 +189,39 @@ int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
 
 void Simulation::processResults()
 {
-	int k = adjacenceMatrixGraph[3][1]; //un lloc on es troba k
-	int nvols = (adjacenceMatrixGraph.size() - 4) / 2;
-	int flow = 0;
-
-	if (adjacenceMatrixResidualGraph[3][1] == 0)
+	if(adjacenceMatrixGraph.empty())
 	{
-		flow = k;
-	}
-
-	for (int i = 4; i < adjacenceMatrixGraph.size(); i += 2)
-	{
-		if (adjacenceMatrixResidualGraph[i][1] == 0)
-		{
-			++flow;
-		}
-	}
-
-	if (flow == nvols + k)
-	{
-		printSol(adjacenceMatrixResidualGraph, adjacenceMatrixGraph);
+		cout << maxFlow << endl;
+		outputFile << maxFlow << endl;
 	}
 	else
 	{
-		cout << "No s'ha trobat cap solució." << endl;
-		outputFile << "No s'ha trobat cap solució." << endl;
+		int k = adjacenceMatrixGraph[3][1]; //un lloc on es troba k
+		int nvols = (adjacenceMatrixGraph.size() - 4) / 2;
+		int flow = 0;
+
+		if (adjacenceMatrixResidualGraph[3][1] == 0)
+		{
+			flow = k;
+		}
+
+		for (int i = 4; i < adjacenceMatrixGraph.size(); i += 2)
+		{
+			if (adjacenceMatrixResidualGraph[i][1] == 0)
+			{
+				++flow;
+			}
+		}
+
+		if (flow == nvols + k)
+		{
+			printSol(adjacenceMatrixResidualGraph, adjacenceMatrixGraph);
+		}
+		else
+		{
+			cout << "No s'ha trobat cap solució." << endl;
+			outputFile << "No s'ha trobat cap solució." << endl;
+		}
 	}
 }
 
