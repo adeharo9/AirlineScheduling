@@ -155,17 +155,35 @@ void Benchmark::manualRunSingle(Algorithm* algorithm)
 			break;
 
 		case MANUAL_1:
-		case VERSION_1_DI_MANUAL:
-		case VERSION_1_EK_MANUAL:
-		case VERSION_1_FF_DFS_MANUAL:
 			manualRunSingleMode(MANUAL_1);
 			break;
 
+		case VERSION_1_DI_MANUAL:
+			manualRunSingleMode(VERSION_1_DI_MANUAL);
+			break;
+
+		case VERSION_1_EK_MANUAL:
+			manualRunSingleMode(VERSION_1_EK_MANUAL);
+			break;
+
+		case VERSION_1_FF_DFS_MANUAL:
+			manualRunSingleMode(VERSION_1_FF_DFS_MANUAL);
+			break;
+
 		case MANUAL_2:
-		case VERSION_2_DI_MANUAL:
-		case VERSION_2_EK_MANUAL:
-		case VERSION_2_FF_DFS_MANUAL:
 			manualRunSingleMode(MANUAL_2);
+			break;
+
+		case VERSION_2_DI_MANUAL:
+			manualRunSingleMode(VERSION_2_DI_MANUAL);
+			break;
+
+		case VERSION_2_EK_MANUAL:
+			manualRunSingleMode(VERSION_2_EK_MANUAL);
+			break;
+
+		case VERSION_2_FF_DFS_MANUAL:
+			manualRunSingleMode(VERSION_2_FF_DFS_MANUAL);
 			break;
 
 		default:
