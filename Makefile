@@ -67,6 +67,7 @@ CPL_FILES = $(CPL_FILES_AUX:.[EXT]=)
 # FILE STRUCTURE
 HEADERS = \
     [FILEPATH]/algorithms/Algorithm.[EXT] \
+    [FILEPATH]/algorithms/DinicBlockingFlow.[EXT] \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
@@ -80,6 +81,7 @@ HEADERS = \
 	[FILEPATH]/utils/Debug.[EXT]
 
 SOURCES = \
+    [FILEPATH]/algorithms/DinicBlockingFlow.[EXT] \
     [FILEPATH]/algorithms/EdmondsKarp.[EXT] \
     [FILEPATH]/algorithms/FordFulkerson.[EXT] \
     [FILEPATH]/algorithms/FordFulkersonDFS.[EXT] \
