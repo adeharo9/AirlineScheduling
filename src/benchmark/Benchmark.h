@@ -7,6 +7,7 @@
 #include "Simulation.h"
 #include "../algorithms/EdmondsKarp.h"
 #include "../algorithms/FordFulkersonDFS.h"
+#include "../algorithms/DinicBlockingFlow.h"
 #include "../utils/Chrono.h"
 #include "Mode.h"
 

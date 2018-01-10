@@ -1,5 +1,4 @@
 #include "Simulation.h"
-#include "../algorithms/DinicBlockingFlow.h"
 
 const string Simulation::V1_NAME = "1";
 const string Simulation::V2_NAME = "2";

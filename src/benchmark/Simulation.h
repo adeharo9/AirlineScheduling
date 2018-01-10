@@ -11,6 +11,7 @@
 #include "../algorithms/Algorithm.h"
 #include "../algorithms/EdmondsKarp.h"
 #include "../algorithms/FordFulkersonDFS.h"
+#include "../algorithms/DinicBlockingFlow.h"
 #include "Mode.h"
 
 using namespace std;

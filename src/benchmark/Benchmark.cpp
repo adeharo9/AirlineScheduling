@@ -1,5 +1,4 @@
 #include "Benchmark.h"
-#include "../algorithms/DinicBlockingFlow.h"
 
 const string Benchmark::V1_NAME = "1";
 const string Benchmark::V2_NAME = "2";
