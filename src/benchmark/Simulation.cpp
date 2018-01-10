@@ -1,4 +1,5 @@
 #include "Simulation.h"
+#include "../algorithms/DinicBlockingFlow.h"
 
 const string Simulation::V1_NAME = "1";
 const string Simulation::V2_NAME = "2";
@@ -80,9 +81,15 @@ void Simulation::load(uint index1, uint index2, uint index3)
 
 	switch (mode)
 	{
-		case MANUAL:
+		case MANUAL_ALL:
 		case MANUAL_1:
 		case MANUAL_2:
+		case VERSION_1_DI_MANUAL:
+		case VERSION_2_DI_MANUAL:
+		case VERSION_1_EK_MANUAL:
+		case VERSION_2_EK_MANUAL:
+		case VERSION_1_FF_DFS_MANUAL:
+		case VERSION_2_FF_DFS_MANUAL:
 			if(graph.vertexSize() > 0)
 			{
 				this -> manualInput();
@@ -108,16 +115,24 @@ void Simulation::initialize()
 {
 	switch (mode)
 	{
-		case MANUAL:
+		case MANUAL_ALL:
 		case MANUAL_1:
-		case VERSION_1_EK:
-		case VERSION_1_FF_DFS:
+		case VERSION_1_DI_MANUAL:
+		case VERSION_1_EK_MANUAL:
+		case VERSION_1_FF_DFS_MANUAL:
+		case VERSION_1_DI_AUTO:
+		case VERSION_1_EK_AUTO:
+		case VERSION_1_FF_DFS_AUTO:
 			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
 		case MANUAL_2:
-		case VERSION_2_EK:
-		case VERSION_2_FF_DFS:
+		case VERSION_2_DI_MANUAL:
+		case VERSION_2_EK_MANUAL:
+		case VERSION_2_FF_DFS_MANUAL:
+		case VERSION_2_DI_AUTO:
+		case VERSION_2_EK_AUTO:
+		case VERSION_2_FF_DFS_AUTO:
 			version2();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
@@ -133,7 +148,7 @@ void Simulation::initialize()
 
 void Simulation::run()
 {
-	maxFlow = dicotomic(0, maxFlights, true);
+	maxFlow = dicotomic(0, maxFlights, false);
 }
 
 int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
@@ -229,44 +244,78 @@ void Simulation::reset()
 
 void Simulation::setMode(Mode inMode)
 {
+	string versionName;
+	string idOutput;
+	string idSimulations;
+
 	this -> mode = inMode;
 
 	switch (inMode)
 	{
-		case MANUAL:
+		case MANUAL_ALL:
 		case MANUAL_1:
-			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_1_EK:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_1_FF_DFS:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V1_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V1_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+		case VERSION_1_DI_MANUAL:
+		case VERSION_1_EK_MANUAL:
+		case VERSION_1_FF_DFS_MANUAL:
+		case VERSION_1_DI_AUTO:
+		case VERSION_1_EK_AUTO:
+		case VERSION_1_FF_DFS_AUTO:
+			versionName = V1_NAME;
 			break;
 
 		case MANUAL_2:
-			outputFilePath = OUTPUT_MANUAL_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_2_EK:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + EdmondsKarp::ID + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + EdmondsKarp::ID + SIMULATIONS_EXTENSION;
-			break;
-
-		case VERSION_2_FF_DFS:
-			outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + V2_NAME + OUTPUT_SEPARATOR + FordFulkersonDFS::ID + OUTPUT_EXTENSION;
-			simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + V2_NAME + SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID + SIMULATIONS_EXTENSION;
+		case VERSION_2_DI_MANUAL:
+		case VERSION_2_EK_MANUAL:
+		case VERSION_2_FF_DFS_MANUAL:
+		case VERSION_2_DI_AUTO:
+		case VERSION_2_EK_AUTO:
+		case VERSION_2_FF_DFS_AUTO:
+			versionName = V2_NAME;
 			break;
 
 		default:
 			throw invalid_argument("mode");
 	}
+
+	switch (mode)
+	{
+		case MANUAL_ALL:
+		case MANUAL_1:
+		case MANUAL_2:
+		case VERSION_1_DI_MANUAL:
+		case VERSION_2_DI_MANUAL:
+		case VERSION_1_EK_MANUAL:
+		case VERSION_2_EK_MANUAL:
+		case VERSION_1_FF_DFS_MANUAL:
+		case VERSION_2_FF_DFS_MANUAL:
+			idOutput = "";
+			idSimulations = "";
+			break;
+
+		case VERSION_1_DI_AUTO:
+		case VERSION_2_DI_AUTO:
+			idOutput = OUTPUT_SEPARATOR + DinicBlockingFlow::ID;
+			idSimulations = SIMULATIONS_SEPARATOR + DinicBlockingFlow::ID;
+			break;
+
+		case VERSION_1_EK_AUTO:
+		case VERSION_2_EK_AUTO:
+			idOutput = OUTPUT_SEPARATOR + EdmondsKarp::ID;
+			idSimulations = SIMULATIONS_SEPARATOR + EdmondsKarp::ID;
+			break;
+
+		case VERSION_1_FF_DFS_AUTO:
+		case VERSION_2_FF_DFS_AUTO:
+			idOutput = OUTPUT_SEPARATOR + FordFulkersonDFS::ID;
+			idSimulations = SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID;
+			break;
+
+		default:
+			throw invalid_argument("mode");
+	}
+
+	outputFilePath = OUTPUT_DIR + OUTPUT_FILENAME + versionName + idOutput + OUTPUT_EXTENSION;
+	simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + versionName + idSimulations + SIMULATIONS_EXTENSION;
 }
 
 /*

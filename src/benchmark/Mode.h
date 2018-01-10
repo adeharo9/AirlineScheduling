@@ -3,7 +3,7 @@
 
 enum Mode
 {
-	MANUAL,
+	MANUAL_ALL,
 	MANUAL_1,
 	MANUAL_2,
 
