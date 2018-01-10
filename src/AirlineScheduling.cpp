@@ -72,7 +72,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "DI" and manual)
 	{
-
+		runModeBenchmark(MANUAL_ALL);
 	}
 	else if(version == 0 and algorithm == "DI" and not manual)
 	{
@@ -81,7 +81,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "EK" and manual)
 	{
-
+		runModeBenchmark(MANUAL_ALL);
 	}
 	else if(version == 0 and algorithm == "EK" and not manual)
 	{
@@ -90,7 +90,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "FF" and manual)
 	{
-
+		runModeBenchmark(MANUAL_ALL);
 	}
 	else if(version == 0 and algorithm == "FF" and not manual)
 	{
