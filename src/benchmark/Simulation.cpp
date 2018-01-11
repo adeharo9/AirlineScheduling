@@ -72,6 +72,8 @@ void Simulation::manualInput()
 
 		++maxFlights;
 	}
+
+	originalBasicGraph = graph;
 }
 
 
@@ -112,31 +114,47 @@ void Simulation::setAlgorithm(Algorithm* inAlgorithm)
 
 void Simulation::initialize()
 {
-	switch (mode)
+	if(firstIteration)
 	{
-		case VERSION_ALL_ALL_MANUAL:
-		case VERSION_1_ALL_MANUAL:
-		case VERSION_1_DI_MANUAL:
-		case VERSION_1_EK_MANUAL:
-		case VERSION_1_FF_DFS_MANUAL:
-		case VERSION_1_DI_AUTO:
-		case VERSION_1_EK_AUTO:
-		case VERSION_1_FF_DFS_AUTO:
-			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
-			break;
+		firstIteration = false;
 
-		case VERSION_2_ALL_MANUAL:
-		case VERSION_2_DI_MANUAL:
-		case VERSION_2_EK_MANUAL:
-		case VERSION_2_FF_DFS_MANUAL:
-		case VERSION_2_DI_AUTO:
-		case VERSION_2_EK_AUTO:
-		case VERSION_2_FF_DFS_AUTO:
-			version2();				// Afegir arestes si es pot arribar d'un vol a un altre
-			break;
+		if(needsInputGraph)
+		{
+			graph = originalBasicGraph;
+		}
 
-		default:
-			throw invalid_argument("mode");
+		switch (mode)
+		{
+			case VERSION_ALL_ALL_MANUAL:
+			case VERSION_1_ALL_MANUAL:
+			case VERSION_1_DI_MANUAL:
+			case VERSION_1_EK_MANUAL:
+			case VERSION_1_FF_DFS_MANUAL:
+			case VERSION_1_DI_AUTO:
+			case VERSION_1_EK_AUTO:
+			case VERSION_1_FF_DFS_AUTO:
+				version1();				// Afegir arestes si es pot arribar d'un vol a un altre
+				break;
+
+			case VERSION_2_ALL_MANUAL:
+			case VERSION_2_DI_MANUAL:
+			case VERSION_2_EK_MANUAL:
+			case VERSION_2_FF_DFS_MANUAL:
+			case VERSION_2_DI_AUTO:
+			case VERSION_2_EK_AUTO:
+			case VERSION_2_FF_DFS_AUTO:
+				version2();				// Afegir arestes si es pot arribar d'un vol a un altre
+				break;
+
+			default:
+				throw invalid_argument("mode");
+		}
+
+		originalCompleteGraph = graph;
+	}
+	else
+	{
+		graph = originalCompleteGraph;
 	}
 
 	deleteLowerBound();		// Eliminar els lower bound
@@ -156,6 +174,8 @@ int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
 	{
 		if(lastIterationCalc)
 		{
+			originalBasicGraph.updateMaxFlights(low);
+			originalCompleteGraph.updateMaxFlights(low);
 			graph.updateMaxFlights(low);
 			this -> initialize();
 			algorithm -> algorithm(adjacenceMatrixGraph, adjacenceMatrixResidualGraph, 0, 1, graph.vertexSize());
@@ -166,6 +186,8 @@ int Simulation::dicotomic(uint low, uint high, bool lastIterationCalc)
 	else
 	{
 		uint k = (high + low) / 2;
+		originalBasicGraph.updateMaxFlights(k);
+		originalCompleteGraph.updateMaxFlights(k);
 		graph.updateMaxFlights(k);
 		this -> initialize();
 
@@ -242,11 +264,14 @@ void Simulation::end()
 	simulationsFile << instanceName << " " << maxFlow << endl;
 
 	simulationsFile.close();
+
+	firstIteration = true;
 }
 
 void Simulation::reset()
 {
 	graph = Graph();
+	firstIteration = true;
 }
 
 void Simulation::setMode(Mode inMode)
@@ -297,24 +322,28 @@ void Simulation::setMode(Mode inMode)
 		case VERSION_2_FF_DFS_MANUAL:
 			idOutput = "";
 			idSimulations = "";
+			needsInputGraph = true;
 			break;
 
 		case VERSION_1_DI_AUTO:
 		case VERSION_2_DI_AUTO:
 			idOutput = OUTPUT_SEPARATOR + DinicBlockingFlow::ID;
 			idSimulations = SIMULATIONS_SEPARATOR + DinicBlockingFlow::ID;
+			needsInputGraph = false;
 			break;
 
 		case VERSION_1_EK_AUTO:
 		case VERSION_2_EK_AUTO:
 			idOutput = OUTPUT_SEPARATOR + EdmondsKarp::ID;
 			idSimulations = SIMULATIONS_SEPARATOR + EdmondsKarp::ID;
+			needsInputGraph = false;
 			break;
 
 		case VERSION_1_FF_DFS_AUTO:
 		case VERSION_2_FF_DFS_AUTO:
 			idOutput = OUTPUT_SEPARATOR + FordFulkersonDFS::ID;
 			idSimulations = SIMULATIONS_SEPARATOR + FordFulkersonDFS::ID;
+			needsInputGraph = false;
 			break;
 
 		default:

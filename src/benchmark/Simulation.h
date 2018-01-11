@@ -55,7 +55,12 @@ private:
 	ofstream outputFile;
 	ofstream simulationsFile;
 
+	Graph originalBasicGraph;
+	Graph originalCompleteGraph;
 	Graph graph;
+	bool firstIteration = true;
+	bool needsInputGraph;
+
 	Algorithm* algorithm;
 
 	imatrix adjacenceMatrixGraph;
