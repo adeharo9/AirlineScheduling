@@ -10,9 +10,9 @@ void runModeBenchmark(Mode mode)
 
 	switch (mode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
-		case MANUAL_2:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
 		case VERSION_1_FF_DFS_MANUAL:
@@ -59,7 +59,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 {
 	if(version == 0 and algorithm == "ALL" and manual)
 	{
-		runModeBenchmark(MANUAL_ALL);
+		runModeBenchmark(VERSION_ALL_ALL_MANUAL);
 	}
 	else if(version == 0 and algorithm == "ALL" and not manual)
 	{
@@ -72,7 +72,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "DI" and manual)
 	{
-		runModeBenchmark(MANUAL_ALL);
+		runModeBenchmark(VERSION_ALL_ALL_MANUAL);
 	}
 	else if(version == 0 and algorithm == "DI" and not manual)
 	{
@@ -81,7 +81,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "EK" and manual)
 	{
-		runModeBenchmark(MANUAL_ALL);
+		runModeBenchmark(VERSION_ALL_ALL_MANUAL);
 	}
 	else if(version == 0 and algorithm == "EK" and not manual)
 	{
@@ -90,7 +90,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 0 and algorithm == "FF" and manual)
 	{
-		runModeBenchmark(MANUAL_ALL);
+		runModeBenchmark(VERSION_ALL_ALL_MANUAL);
 	}
 	else if(version == 0 and algorithm == "FF" and not manual)
 	{
@@ -99,7 +99,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 1 and algorithm == "ALL" and manual)
 	{
-		runModeBenchmark(MANUAL_1);
+		runModeBenchmark(VERSION_1_ALL_MANUAL);
 	}
 	else if(version == 1 and algorithm == "ALL" and not manual)
 	{
@@ -133,7 +133,7 @@ void executeMode(uint version, const string& algorithm, bool manual)
 	}
 	else if(version == 2 and algorithm == "ALL" and manual)
 	{
-		runModeBenchmark(MANUAL_2);
+		runModeBenchmark(VERSION_2_ALL_MANUAL);
 	}
 	else if(version == 2 and algorithm == "ALL" and not manual)
 	{

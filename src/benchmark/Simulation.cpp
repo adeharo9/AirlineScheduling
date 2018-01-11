@@ -80,9 +80,9 @@ void Simulation::load(uint index1, uint index2, uint index3)
 
 	switch (mode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
-		case MANUAL_2:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
@@ -114,8 +114,8 @@ void Simulation::initialize()
 {
 	switch (mode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
 		case VERSION_1_FF_DFS_MANUAL:
@@ -125,7 +125,7 @@ void Simulation::initialize()
 			version1();				// Afegir arestes si es pot arribar d'un vol a un altre
 			break;
 
-		case MANUAL_2:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_2_EK_MANUAL:
 		case VERSION_2_FF_DFS_MANUAL:
@@ -259,8 +259,8 @@ void Simulation::setMode(Mode inMode)
 
 	switch (inMode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
 		case VERSION_1_FF_DFS_MANUAL:
@@ -270,7 +270,7 @@ void Simulation::setMode(Mode inMode)
 			versionName = V1_NAME;
 			break;
 
-		case MANUAL_2:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_2_EK_MANUAL:
 		case VERSION_2_FF_DFS_MANUAL:
@@ -286,9 +286,9 @@ void Simulation::setMode(Mode inMode)
 
 	switch (mode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
-		case MANUAL_2:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:

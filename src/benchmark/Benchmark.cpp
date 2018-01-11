@@ -59,9 +59,9 @@ void Benchmark::manualRun()
 			algorithm = &dinicBlockingFlow;
 			break;
 
-		case MANUAL_ALL:
-		case MANUAL_1:
-		case MANUAL_2:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_1_EK_MANUAL:
 		case VERSION_2_EK_MANUAL:
 			algorithm = &edmondsKarp;
@@ -149,13 +149,13 @@ void Benchmark::manualRunSingle(Algorithm* algorithm)
 
 	switch (mode)
 	{
-		case MANUAL_ALL:
-			manualRunSingleMode(MANUAL_1);
-			manualRunSingleMode(MANUAL_2);
+		case VERSION_ALL_ALL_MANUAL:
+			manualRunSingleMode(VERSION_1_ALL_MANUAL);
+			manualRunSingleMode(VERSION_2_ALL_MANUAL);
 			break;
 
-		case MANUAL_1:
-			manualRunSingleMode(MANUAL_1);
+		case VERSION_1_ALL_MANUAL:
+			manualRunSingleMode(VERSION_1_ALL_MANUAL);
 			break;
 
 		case VERSION_1_DI_MANUAL:
@@ -170,8 +170,8 @@ void Benchmark::manualRunSingle(Algorithm* algorithm)
 			manualRunSingleMode(VERSION_1_FF_DFS_MANUAL);
 			break;
 
-		case MANUAL_2:
-			manualRunSingleMode(MANUAL_2);
+		case VERSION_2_ALL_MANUAL:
+			manualRunSingleMode(VERSION_2_ALL_MANUAL);
 			break;
 
 		case VERSION_2_DI_MANUAL:
@@ -232,8 +232,8 @@ void Benchmark::setMode(Mode inMode)
 
 	switch (inMode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
 		case VERSION_1_FF_DFS_MANUAL:
@@ -243,7 +243,7 @@ void Benchmark::setMode(Mode inMode)
 			versionName = V1_NAME;
 			break;
 
-		case MANUAL_2:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_2_EK_MANUAL:
 		case VERSION_2_FF_DFS_MANUAL:
@@ -259,9 +259,9 @@ void Benchmark::setMode(Mode inMode)
 
 	switch (mode)
 	{
-		case MANUAL_ALL:
-		case MANUAL_1:
-		case MANUAL_2:
+		case VERSION_ALL_ALL_MANUAL:
+		case VERSION_1_ALL_MANUAL:
+		case VERSION_2_ALL_MANUAL:
 		case VERSION_1_DI_MANUAL:
 		case VERSION_2_DI_MANUAL:
 		case VERSION_1_EK_MANUAL:
