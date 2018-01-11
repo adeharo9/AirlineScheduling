@@ -4,6 +4,9 @@
 
 #include "Algorithm.h"
 #include <vector>
+#include <queue>
+#include <climits>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -12,6 +15,12 @@ typedef unsigned int uint;
 
 class DinicBlockingFlow : public Algorithm
 {
+private:
+
+	bool buildLevelGraph(uint s, uint t, vector<vector<int> > &residualGraph, vector<int> &levels);
+
+	int blockingFlow(uint u, int flow, uint t, vector<int> &lastAdjacent, vector<vector<int> > &residualGraph, vector<int> &levels);
+
 public:
 
 	static const string ID;
