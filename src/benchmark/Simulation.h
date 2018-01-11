@@ -77,6 +77,8 @@ public:
 
 	/* GENERAL SIMULATION METHODS */
 
+	void input();
+
 	void manualInput();
 
 	void load(uint index1, uint index2, uint index3);
@@ -96,8 +98,6 @@ public:
 	void setMode(Mode inMode);
 
 private:
-
-	void input();
 
 	/* SPECIFIC SIMULATION METHODS */
 
