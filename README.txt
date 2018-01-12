@@ -26,7 +26,7 @@ OPCIONS
     · -L, --ALL: Executa els algorismes seleccionats amb totes les versions del problema.
 
     · -a, --algorithm ALG: Executa el programe amb l'algorisme identificat pel seu descriptor ALG. Els descriptors disponibles són:
-        · DI: algorisme de bloqueig de fluxe de Dinic.
+        · DI: algorisme de flux de bloqueig de Dinic.
         · EK: algorisme d'Edmonds-Karp.
         · FF: mètode de Ford-Fulkerson amb DFS.
         · ALL: Executa tots els algorismes anteriorment anomenats de forma seqüencial.
