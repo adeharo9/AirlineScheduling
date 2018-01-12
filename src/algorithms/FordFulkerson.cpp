@@ -50,30 +50,6 @@ int FordFulkerson::algorithm(vector<vector<int> > &graph, vector<vector<int> > &
 		max_flow += path_flow;
 	}
 	// Return the overall flow
-// TODO hacer una funcion para print y que no sea tan cutre
-
-	/*cout<<"Final"<<endl<<endl;
-	for (u = 0; u < V; u++){
-		if (u==4)cout<<"----------------------"<<endl;
-		for (v = 0; v < V; v++){
-			if (v==4)cout<<'|';
-			cout<<residualGraph[u][v]<<" ";
-		}
-		cout<<endl;
-	}*/
-
-	//si el resultat es solució, el flow al T real ha de ser k + nombre de vols
-
-	/*int k=graph[3][1]; //un lloc on es troba k
-	int nvols=(graph.size()-4)/2;
-	int flow=0;
-	if (residualGraph[3][1]==0)flow=k;
-	for (int i=4;i<graph.size();i+=2){
-		if(residualGraph[i][1]==0)flow++;
-	}
-	if (flow==nvols+k) print_sol(residualGraph,graph);
-	else cout<<"No s'ha trobat cap solució"<<endl;*/
-
 	return max_flow;
 }
 
