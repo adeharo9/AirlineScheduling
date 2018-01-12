@@ -37,3 +37,6 @@
 # CLion specifics
 CMakeLists.txt
 cmake-build-debug
+
+# Project specifics
+*.zip
