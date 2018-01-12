@@ -20,12 +20,12 @@ $ `./AirlineScheduling [-12hL] [-a algorithm] [-AM]`
 - `-2`: Executes the selected algorithms with version 2 of the problem.
 - `-h`, `--help`: Shows the help message.
 - `-L`, `--ALL`: Executes the selected algorithms with all versions of the problem.
-------
+---
 - `-a`, `--algorithm` `ALG`: Executes the program with the algorithm identified by its descriptor `ALG`. Available descriptors are:
     - `DI`: Dinic's blocking flow algorithm."
     - `EK`: Edmonds-Karp algorithm.
     - `FF`: Ford-Fulkerson method with DFS.
     - `ALL`: Executes all previously named algorithms secuentially.
-------
+---
 - `-A`, `--auto`: Executes automatic data input.
 - `-M`, `--manual`: Executes manual data input.
