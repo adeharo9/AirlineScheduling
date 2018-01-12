@@ -52,29 +52,3 @@ int FordFulkerson::algorithm(vector<vector<int> > &graph, vector<vector<int> > &
 	// Return the overall flow
 	return max_flow;
 }
-
-void FordFulkerson::print_sol(const vector<vector<int> > &g,const vector<vector<int> > &ini){
-	cout<<"Resultat: "<<endl<<endl;
-	//si s'ha seguit una aresta amb capacitat 1, al graf final te capacitat 0
-	int p=1;
-	int size=g.size();
-	for(int i=4;i<size;i+=2){//origen
-		if (g[2][i]==0){//si el camí comença per el vertex i
-			cout<<"Pilot: "<<p<<endl;
-			int j=i;
-			//index segons l'exemple de l'enunciat
-			while(g[j+1][3]!=0){// si NO es l'ultim vol que fa el pilot
-				cout<<"	Vol: "<<(j-4)/2+1<<endl;
-				bool found=false;
-				for(int k=4;k<size and not found;k+=2){
-					if(g[j+1][k]==0 and ini[j+1][k]==1){//si el vol ha seguit per aquest camí
-						j=k;
-						found=true;
-					}
-				}
-			}
-			cout<<"        Vol: "<<(j-4)/2+1<<endl<<endl;
-			p++;
-		}
-	}
-}
