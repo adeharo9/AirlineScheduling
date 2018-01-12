@@ -25,11 +25,11 @@ OPCIONS
     · -h, --help: Mostra el missatge d'ajuda.
     · -L, --ALL: Executa els algorismes seleccionats amb totes les versions del problema.
 
-    · -a, --algorithm VALOR: Executa el programe amb l'algorisme identificat pel seu descriptor VALOR. Els descriptors disponibles són:
+    · -a, --algorithm ALG: Executa el programe amb l'algorisme identificat pel seu descriptor ALG. Els descriptors disponibles són:
         · DI: algorisme de bloqueig de fluxe de Dinic.
         · EK: algorisme d'Edmonds-Karp.
         · FF: mètode de Ford-Fulkerson amb DFS.
-        · ALL: Executa tots els algorismes de forma seqüencial.
+        · ALL: Executa tots els algorismes anteriorment anomenats de forma seqüencial.
 
     · -A, --auto: Executa l'entrada de dades automàtica.
     · -M, --manual: Executa l'entrada de dades manual.

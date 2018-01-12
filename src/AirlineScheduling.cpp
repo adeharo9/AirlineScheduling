@@ -40,17 +40,17 @@ void usage(char* argv[])
 	cout << "	-h, --help:" << endl;
 	cout << "		Shows this help message." << endl;
 	cout << "	-L, --ALL:" << endl;
-	cout << "		Executes the selected algorithms in all versions of the problem." << endl << endl;
-	cout << "	-a, --algorithm value:" << endl;
-	cout << "		VALUE: " << endl;
-	cout << "			ALL: Executes all algorithms secuentially." << endl;
+	cout << "		Executes the selected algorithms with all versions of the problem." << endl << endl;
+	cout << "	-a, --algorithm ALG:" << endl;
+	cout << "		Executes the program with the algorithm identified by its descriptor `ALG`. Available descriptors are:" << endl;
 	cout << "			DI: Dinic's blocking flow algorithm." << endl;
 	cout << "			EK: Edmonds-Karp algorithm." << endl;
-	cout << "			FF: Ford-Fulkerson method with DFS." << endl << endl;
+	cout << "			FF: Ford-Fulkerson method with DFS." << endl;
+	cout << "			ALL: Executes all previously named algorithms secuentially." << endl << endl;
 	cout << "	-A, --auto:" << endl;
-	cout << "		Uses automated input when combined with other options." << endl;
+	cout << "		Executes automatic data input." << endl;
 	cout << "	-M, --manual:" << endl;
-	cout << "		Uses manual input when combined with other options." << endl << endl;
+	cout << "		Executes manual data input." << endl << endl;
 
 	exit(-1);
 }
