@@ -31,22 +31,22 @@ void runModeBenchmark(Mode mode)
 void usage(char* argv[])
 {
 	cout << endl;
-	cout << argv[0] << " [-12Lh] [-a algorithm] [-AM]" << endl << endl;
+	cout << argv[0] << " [-12hL] [-a algorithm] [-AM]" << endl << endl;
 	cout << "OPTIONS: " << endl;
 	cout << "	-1:" << endl;
-	cout << "		Executes selected algorithms with version 1 of the problem." << endl;
+	cout << "		Executes the selected algorithms with version 1 of the problem." << endl;
 	cout << "	-2:" << endl;
-	cout << "		Executes selected algorithms with version 2 of the problem." << endl;
-	cout << "	-L, --ALL:" << endl;
-	cout << "		Executes selected algorithms in all versions of the problem." << endl << endl;
+	cout << "		Executes the selected algorithms with version 2 of the problem." << endl;
 	cout << "	-h, --help:" << endl;
-	cout << "		Show this help message." << endl << endl;
+	cout << "		Shows this help message." << endl;
+	cout << "	-L, --ALL:" << endl;
+	cout << "		Executes the selected algorithms in all versions of the problem." << endl << endl;
 	cout << "	-a, --algorithm value:" << endl;
 	cout << "		VALUE: " << endl;
 	cout << "			ALL: Executes all algorithms secuentially." << endl;
 	cout << "			DI: Dinic's blocking flow algorithm." << endl;
 	cout << "			EK: Edmonds-Karp algorithm." << endl;
-	cout << "			FF: FordFulkerson algorithm with DFS." << endl << endl;
+	cout << "			FF: Ford-Fulkerson method with DFS." << endl << endl;
 	cout << "	-A, --auto:" << endl;
 	cout << "		Uses automated input when combined with other options." << endl;
 	cout << "	-M, --manual:" << endl;
