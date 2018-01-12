@@ -11,7 +11,7 @@ Once compiled, from the base directory of the project simply execute, from comma
 
 $ `./AirlineScheduling`
 
-On the screen will appear the isntructions on how to properly set an execution session of the program.
+The instructions on how to properly set an execution session of the program will appear on screen.
 
 $ `./AirlineScheduling [-12hL] [-a algorithm] [-AM]`
 
