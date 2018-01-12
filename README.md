@@ -3,21 +3,23 @@ Program for solving the airline scheduling problem, selecting the minimum number
 
 # How to compile?
 From the base directory of the project, simply execute, from command line, the following command:
+
 $ `make`
 
 # How to execute?
 Once compiled, from the base directory of the project simply execute, from command line, the following command:
+
 $ `./AirlineScheduling`
 
 On the screen will appear the isntructions on how to properly set an execution session of the program.
 
 $ `./AirlineScheduling [-12hL] [-a algorithm] [-AM]`
 
-## Options
+**Options**
 - `-1`: Executes the selected algorithms with version 1 of the problem.
 - `-2`: Executes the selected algorithms with version 2 of the problem.
 - `-h`, `--help`: Shows the help message.
-- `-L`, `--ALL`:
+- `-L`, `--ALL`: Executes the selected algorithms in all versions of the problem.
 
 - `-a`, `--algorithm` `VALUE`: Executes the program with an algorithm matching its descriptor `VALUE`. Available descriptors are:
     - `DI`: Dinic's blocking flow algorithm."
