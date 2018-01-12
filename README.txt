@@ -12,11 +12,11 @@ COM EXECUTAR?
 
 Des de la carpeta base del projecte, executar la següent comanda des de la línia de comandes:
 
-$ ./AirlineScheduling
+$ ./AirlineScheduling.exe
 
 A continuació apareixerà una descripció de les opcions per tal de configurar apropiadament una sessió d'execució del programa.
 
-$ ./AirlineScheduling [-12hL] [-a algoritme] [-AM]
+$ ./AirlineScheduling.exe [-12hL] [-a algoritme] [-AM]
 
 OPCIONS
 
