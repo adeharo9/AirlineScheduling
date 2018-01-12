@@ -77,8 +77,7 @@ HEADERS = \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
-	[FILEPATH]/utils/Chrono.[EXT] \
-	[FILEPATH]/utils/Debug.[EXT]
+	[FILEPATH]/utils/Chrono.[EXT]
 
 SOURCES = \
     [FILEPATH]/algorithms/DinicBlockingFlow.[EXT] \
@@ -90,7 +89,6 @@ SOURCES = \
 	[FILEPATH]/structures/Edge.[EXT] \
 	[FILEPATH]/structures/Graph.[EXT] \
 	[FILEPATH]/structures/Vertex.[EXT] \
-	[FILEPATH]/utils/Debug.[EXT] \
 	[FILEPATH]/AirlineScheduling.[EXT]
 
 # DIRECTORY STRUCTURE
