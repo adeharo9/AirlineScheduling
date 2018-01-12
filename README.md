@@ -1,12 +1,12 @@
 # AirlineSheduling
 Program for solving the airline scheduling problem, selecting the minimum number of pilots that can perform a given set of routes between cities given some constraints on their workflow.
 
-# How to compile?
+## How to compile?
 From the base directory of the project, simply execute, from command line, the following command:
 
 $ `make`
 
-# How to execute?
+## How to execute?
 Once compiled, from the base directory of the project simply execute, from command line, the following command:
 
 $ `./AirlineScheduling`
