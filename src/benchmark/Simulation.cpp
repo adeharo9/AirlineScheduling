@@ -33,7 +33,7 @@ void Simulation::input()
 
 	maxFlights = 0;
 
-	while (inputFile >> originCity)	// operacions descrites a la pagina 390 del llibre
+	while (inputFile >> originCity)	
 	{
 		inputFile >> destinationCity;
 		inputFile >> departureTime;
@@ -59,7 +59,7 @@ void Simulation::manualInput()
 
 	maxFlights = 0;
 
-	while (cin >> originCity)	// operacions descrites a la pagina 390 del llibre
+	while (cin >> originCity)
 	{
 		cin >> destinationCity;
 		cin >> departureTime;
@@ -133,7 +133,7 @@ void Simulation::initialize()
 			case VERSION_1_DI_AUTO:
 			case VERSION_1_EK_AUTO:
 			case VERSION_1_FF_DFS_AUTO:
-				version1();				// Afegir arestes si es pot arribar d'un vol a un altre
+				version1();				
 				break;
 
 			case VERSION_2_ALL_MANUAL:
@@ -143,7 +143,7 @@ void Simulation::initialize()
 			case VERSION_2_DI_AUTO:
 			case VERSION_2_EK_AUTO:
 			case VERSION_2_FF_DFS_AUTO:
-				version2();				// Afegir arestes si es pot arribar d'un vol a un altre
+				version2();				
 				break;
 
 			default:
@@ -354,11 +354,7 @@ void Simulation::setMode(Mode inMode)
 	simulationsFilePath = SIMULATIONS_DIR + SIMULATIONS_FILENAME + versionName + idSimulations + SIMULATIONS_EXTENSION;
 }
 
-/*
-	afegeix arestes seguint el criteri sobre quines transicions son posibles de la versió 1
-	per tot node destí comprobem per tot node origen si es possible fer transició
-	cost n * n on n son els vols
-*/
+
 void Simulation::version1()
 {
 	for (uint destination = Graph::firstDestinationVertex; destination < graph.vertexSize(); destination += 2)	// destination es desti
@@ -412,10 +408,7 @@ void Simulation::version2()
 		}
 	}
 }
-/*
-  elimina els lower bound de les arestes i actualitza les demandes
-  les uniques arestes amb lower suerten de les ciutats d'origen
-*/
+
 void Simulation::deleteLowerBound()
 {
 	for (uint i = Graph::firstOriginVertex; i < graph.vertexSize(); i += Graph::originStepSize)
@@ -430,10 +423,6 @@ void Simulation::deleteLowerBound()
 	}
 }
 
-/*
-  elimina les demandes  i actualizta el sink i drain reals amb les
-  arestes necessaries
-*/
 void Simulation::deleteDemand()
 {
 	for (uint i = Graph::firstFlowNetworkVertex; i < graph.vertexSize(); ++i)
@@ -443,7 +432,7 @@ void Simulation::deleteDemand()
 			graph.addNeighbour(i, Edge(i, 1, graph.getVertex(i).getDemand()));
 			graph.getVertex(i).setDemand(0);
 		}
-		else if (graph.getVertex(i).getDemand() < 0)	// Si es source s va a el
+		else if (graph.getVertex(i).getDemand() < 0)	// Si demanda < 0 es source i s va a ell
 		{
 			graph.addNeighbour(Graph::sourceWithoutDemand, Edge(Graph::sourceWithoutDemand, i, -graph.getVertex(i).getDemand()));
 			graph.getVertex(i).setDemand(0);
@@ -481,7 +470,7 @@ void Simulation::printSol(const vector<vector<int> >& residualGraph, const vecto
 	{
 		if (residualGraph[2][i] == 0)	//si el camí comença per el vertex i
 		{
-			int j = i;	//index segons l'exemple de l'enunciat
+			int j = i;	
 
 			while (residualGraph[j + 1][3] != 0)	// si NO es l'ultim vol que fa el pilot
 			{
